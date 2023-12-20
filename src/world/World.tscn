@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg8uw8ya3kggl"]
+
+[ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
+[ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
+[ext_resource type="PackedScene" uid="uid://cgv48r2x7or7u" path="res://src/actors/Player.tscn" id="2_7ri8x"]
+[ext_resource type="Script" path="res://src/world/StaticBackground.gd" id="3_ivxvh"]
+[ext_resource type="Script" path="res://src/world/misc/PlayerCamera.gd" id="3_sc3ga"]
+[ext_resource type="PackedScene" uid="uid://da1iv8j2rkp0i" path="res://src/world/objects/Cloud.tscn" id="5_jfnqv"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_tcj0p")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(310, 0)
+texture = ExtResource("1_i4fd4")
+script = ExtResource("3_ivxvh")
+
+[node name="Player" parent="." instance=ExtResource("2_7ri8x")]
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("3_sc3ga")
+
+[node name="Cloud" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(2, 195)
+
+[node name="Cloud2" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(427, 175)
+
+[node name="Cloud3" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(683, 242)
+
+[node name="Cloud4" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(1118, 151)
+
+[node name="Cloud5" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(1355, 256)
+
+[node name="Cloud6" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(1698, 213)

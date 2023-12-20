@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://da1iv8j2rkp0i"]
+
+[ext_resource type="Texture2D" uid="uid://dmr4knr4l1d86" path="res://src/world/assets/graphics/cloud.png" id="1_0fhuc"]
+[ext_resource type="Script" path="res://src/world/objects/Cloud.gd" id="1_711f6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mxje"]
+radius = 56.0
+height = 176.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hfu0"]
+radius = 50.0
+height = 178.0
+
+[node name="Cloud" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_711f6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0fhuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1mxje")
+
+[node name="PlayerBouncer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBouncer"]
+position = Vector2(3, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1hfu0")
+
+[connection signal="body_entered" from="PlayerBouncer" to="." method="_on_player_bouncer_body_entered"]
