@@ -7,7 +7,7 @@
 radius = 17.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 14
+collision_mask = 30
 script = ExtResource("1_vbwar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

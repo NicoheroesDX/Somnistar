@@ -1,60 +1,92 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg8uw8ya3kggl"]
+[gd_scene load_steps=12 format=3 uid="uid://bg8uw8ya3kggl"]
 
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
 [ext_resource type="PackedScene" uid="uid://cgv48r2x7or7u" path="res://src/actors/Player.tscn" id="2_7ri8x"]
-[ext_resource type="Script" path="res://src/world/StaticBackground.gd" id="3_ivxvh"]
+[ext_resource type="Script" path="res://src/world/misc/StaticBackground.gd" id="3_ivxvh"]
 [ext_resource type="Script" path="res://src/world/misc/PlayerCamera.gd" id="3_sc3ga"]
 [ext_resource type="PackedScene" uid="uid://da1iv8j2rkp0i" path="res://src/world/objects/Cloud.tscn" id="5_jfnqv"]
+[ext_resource type="Script" path="res://src/world/misc/CloudSpawner.gd" id="6_u2jtw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rff6b"]
+size = Vector2(74, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci5mf"]
+size = Vector2(1300, 188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcthv"]
+size = Vector2(74, 1080)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ofya1"]
+radius = 6.0
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tcj0p")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="BackgroundA" type="Sprite2D" parent="."]
 position = Vector2(310, 0)
 texture = ExtResource("1_i4fd4")
 script = ExtResource("3_ivxvh")
 
+[node name="BackgroundB" type="Sprite2D" parent="."]
+position = Vector2(2230, 0)
+texture = ExtResource("1_i4fd4")
+script = ExtResource("3_ivxvh")
+
 [node name="Player" parent="." instance=ExtResource("2_7ri8x")]
+position = Vector2(0, -135)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_sc3ga")
 
+[node name="WorldBorder" type="AnimatableBody2D" parent="."]
+collision_layer = 16
+
+[node name="LeftCollider" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(-613, 0)
+shape = SubResource("RectangleShape2D_rff6b")
+
+[node name="RightCollider" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(613, 0)
+shape = SubResource("RectangleShape2D_rff6b")
+
+[node name="DeathZone" type="Area2D" parent="WorldBorder"]
+
+[node name="DeathCollider" type="CollisionShape2D" parent="WorldBorder/DeathZone"]
+position = Vector2(0, 446)
+shape = SubResource("RectangleShape2D_ci5mf")
+
+[node name="Spawn" type="Node" parent="."]
+
+[node name="SpawnEmitter" type="Area2D" parent="Spawn"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn/SpawnEmitter"]
+position = Vector2(687, 0)
+shape = SubResource("RectangleShape2D_mcthv")
+
+[node name="CloudSpawner" type="AnimatableBody2D" parent="Spawn" groups=["spawner"]]
+position = Vector2(847, 141)
+collision_layer = 32
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("6_u2jtw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn/CloudSpawner"]
+shape = SubResource("CircleShape2D_ofya1")
+
 [node name="Cloud" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(143, 162)
+position = Vector2(6, 138)
 
 [node name="Cloud2" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(268, 133)
+position = Vector2(293, 139)
 
 [node name="Cloud3" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(5, 133)
+position = Vector2(574, 139)
 
 [node name="Cloud4" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(348, 219)
+position = Vector2(847, 141)
 
-[node name="Cloud5" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(201, 219)
-
-[node name="Cloud6" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(50, 205)
-
-[node name="Cloud7" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(-73, 198)
-
-[node name="Cloud8" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(-23, 285)
-
-[node name="Cloud9" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(93, 269)
-
-[node name="Cloud10" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(214, 294)
-
-[node name="Cloud11" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(333, 268)
-
-[node name="Cloud12" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(580, 131)
-
-[node name="Cloud13" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(795, 88)
+[connection signal="body_entered" from="WorldBorder/DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="Spawn/SpawnEmitter" to="." method="_on_spawn_emitter_body_entered"]

@@ -2,26 +2,23 @@ extends Node2D
 
 @onready var player: CharacterBody2D = get_node("Player")
 
-var cloud_scene: PackedScene
+@onready var bgA: Sprite2D = get_node("BackgroundA");
+@onready var bgB: Sprite2D = get_node("BackgroundB");
 
-var cloud_interval : float = 200.0
-var last_cloud_spawned_at : float = 0.0
+func _physics_process(delta):
+	if (bgA.position.x < -1920):
+		bgA.position.x = 0;
+		bgB.position.x = 1920;
 
-func _ready():
-	cloud_scene = preload("res://src/world/objects/Cloud.tscn")
-
-func _process(delta):
-	if player.global_position.x - last_cloud_spawned_at > cloud_interval:
-		spawn_cloud();
-		last_cloud_spawned_at = player.global_position.x
+	var speed = Global.speed;
+	bgA.position.x -= speed * delta
+	bgB.position.x -= speed * delta
 	
-	if player.global_position.y > 400:
-		player.global_position.y = 0
-		player.velocity = Vector2(0,0)
 
-func spawn_cloud():
-	var cloud = cloud_scene.instantiate();
-	
-	cloud.global_position = Vector2(player.global_position.x + 800, randf_range(0, 200))
-	
-	add_child(cloud);
+func _on_death_zone_body_entered(body):
+	if (body.get_groups().has("player")):
+		player.die();
+
+func _on_spawn_emitter_body_entered(body):
+	if (body.get_groups().has("spawner")):
+		body.spawn_and_reset();

@@ -11,8 +11,10 @@ height = 176.0
 radius = 50.0
 height = 178.0
 
-[node name="Cloud" type="StaticBody2D"]
+[node name="Cloud" type="AnimatableBody2D"]
 collision_layer = 2
+collision_mask = 0
+sync_to_physics = false
 script = ExtResource("1_711f6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
