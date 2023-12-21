@@ -21,19 +21,40 @@ script = ExtResource("3_ivxvh")
 script = ExtResource("3_sc3ga")
 
 [node name="Cloud" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(2, 195)
+position = Vector2(143, 162)
 
 [node name="Cloud2" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(427, 175)
+position = Vector2(268, 133)
 
 [node name="Cloud3" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(683, 242)
+position = Vector2(5, 133)
 
 [node name="Cloud4" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(1118, 151)
+position = Vector2(348, 219)
 
 [node name="Cloud5" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(1355, 256)
+position = Vector2(201, 219)
 
 [node name="Cloud6" parent="." instance=ExtResource("5_jfnqv")]
-position = Vector2(1698, 213)
+position = Vector2(50, 205)
+
+[node name="Cloud7" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(-73, 198)
+
+[node name="Cloud8" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(-23, 285)
+
+[node name="Cloud9" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(93, 269)
+
+[node name="Cloud10" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(214, 294)
+
+[node name="Cloud11" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(333, 268)
+
+[node name="Cloud12" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(580, 131)
+
+[node name="Cloud13" parent="." instance=ExtResource("5_jfnqv")]
+position = Vector2(795, 88)
