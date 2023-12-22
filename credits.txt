@@ -1,0 +1,9 @@
+Programs:
+> Godot
+> Aseprite
+
+Music:
+> Mario Kart Arcade GP - Rainbow Cup
+
+Assets:
+> Kenney Particle Pack

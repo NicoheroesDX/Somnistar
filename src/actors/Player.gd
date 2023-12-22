@@ -33,11 +33,6 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		velocity.x = max(-SPEED_LIMIT, velocity.x)
 	
-
-	
-	print(velocity.x)
-	
-
 	move_and_slide()
 
 func die():

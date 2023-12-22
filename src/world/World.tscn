@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg8uw8ya3kggl"]
+[gd_scene load_steps=13 format=3 uid="uid://bg8uw8ya3kggl"]
 
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://da1iv8j2rkp0i" path="res://src/world/objects/Cloud.tscn" id="5_jfnqv"]
 [ext_resource type="AudioStream" uid="uid://bwuykikcvqw6x" path="res://src/world/assets/music/world.mp3" id="6_habkx"]
 [ext_resource type="Script" path="res://src/world/misc/CloudSpawner.gd" id="6_u2jtw"]
+[ext_resource type="PackedScene" uid="uid://capngx7vl4loh" path="res://src/world/objects/Light.tscn" id="7_1ikl1"]
 
 [sub_resource type="GDScript" id="GDScript_loyg1"]
 script/source = "extends Sprite2D
@@ -100,6 +101,9 @@ position = Vector2(574, 139)
 
 [node name="Cloud4" parent="." instance=ExtResource("5_jfnqv")]
 position = Vector2(847, 141)
+
+[node name="Light" parent="." instance=ExtResource("7_1ikl1")]
+position = Vector2(295, -140)
 
 [connection signal="body_entered" from="WorldBorder/DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="body_entered" from="Spawn/SpawnEmitter" to="." method="_on_spawn_emitter_body_entered"]
