@@ -3,10 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
 [ext_resource type="PackedScene" uid="uid://cgv48r2x7or7u" path="res://src/actors/Player.tscn" id="2_7ri8x"]
-[ext_resource type="Script" path="res://src/world/misc/StaticBackground.gd" id="3_ivxvh"]
-[ext_resource type="Script" path="res://src/world/misc/PlayerCamera.gd" id="3_sc3ga"]
 [ext_resource type="PackedScene" uid="uid://da1iv8j2rkp0i" path="res://src/world/objects/Cloud.tscn" id="5_jfnqv"]
+[ext_resource type="AudioStream" uid="uid://bwuykikcvqw6x" path="res://src/world/assets/music/world.mp3" id="6_habkx"]
 [ext_resource type="Script" path="res://src/world/misc/CloudSpawner.gd" id="6_u2jtw"]
+
+[sub_resource type="GDScript" id="GDScript_loyg1"]
+script/source = "extends Sprite2D
+
+var speed = 0;
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	speed = Global.speed;
+	position.x -= speed * delta
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rff6b"]
 size = Vector2(74, 1080)
@@ -26,18 +36,21 @@ script = ExtResource("1_tcj0p")
 [node name="BackgroundA" type="Sprite2D" parent="."]
 position = Vector2(310, 0)
 texture = ExtResource("1_i4fd4")
-script = ExtResource("3_ivxvh")
+script = SubResource("GDScript_loyg1")
 
 [node name="BackgroundB" type="Sprite2D" parent="."]
 position = Vector2(2230, 0)
 texture = ExtResource("1_i4fd4")
-script = ExtResource("3_ivxvh")
+script = SubResource("GDScript_loyg1")
 
 [node name="Player" parent="." instance=ExtResource("2_7ri8x")]
 position = Vector2(0, -135)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-script = ExtResource("3_sc3ga")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_habkx")
+volume_db = -20.0
 
 [node name="WorldBorder" type="AnimatableBody2D" parent="."]
 collision_layer = 16
