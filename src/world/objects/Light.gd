@@ -15,4 +15,5 @@ func _on_player_collector_body_entered(body):
 		collect()
 
 func collect():
-	queue_free()
+	Global.change_collected_light(+1);
+	queue_free();

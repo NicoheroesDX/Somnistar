@@ -13,7 +13,6 @@ func _physics_process(delta):
 	var speed = Global.speed;
 	bgA.position.x -= speed * delta
 	bgB.position.x -= speed * delta
-	
 
 func _on_death_zone_body_entered(body):
 	if (body.get_groups().has("player")):

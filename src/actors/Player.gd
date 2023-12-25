@@ -4,6 +4,8 @@ const SPEED = 30.0
 const SPEED_LIMIT = 300.0
 const AIR_RESISTANCE = 10.0;
 
+@onready var stompCooldown = get_node("StompCooldown")
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -33,8 +35,13 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		velocity.x = max(-SPEED_LIMIT, velocity.x)
 	
+	if stompCooldown.time_left == 0 && Input.is_action_just_pressed("player_down"):
+		velocity.y = 1000;
+		stompCooldown.wait_time = 0.2;
+		stompCooldown.start();
+	
 	move_and_slide()
 
 func die():
-	global_position.y = 0
+	global_position.y = -300
 	velocity = Vector2(0,0)
