@@ -15,7 +15,7 @@ func spawn_and_reset():
 
 func spawn_enemy():
 	var enemy = enemy_scene.instantiate();
-	var randomVector = Vector2(randf_range(1500, 4000), randf_range(-300, 50));
+	var randomVector = Vector2(randf_range(1500, 5000), randf_range(-200, 0));
 	enemy.global_position = randomVector;
 	get_parent().get_parent().add_child(enemy);
 	return randomVector;

@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgv48r2x7or7u"]
+[gd_scene load_steps=8 format=3 uid="uid://cgv48r2x7or7u"]
 
 [ext_resource type="Texture2D" uid="uid://b18jh1nedos2q" path="res://src/actors/assets/graphics/player.png" id="1_qfgtj"]
 [ext_resource type="Script" path="res://src/actors/Player.gd" id="1_vbwar"]
+[ext_resource type="Texture2D" uid="uid://dtig6fgrm28u" path="res://src/particles/assets/graphics/circle_05.png" id="3_fkf0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4bc4"]
 radius = 17.0
+
+[sub_resource type="Gradient" id="Gradient_l677k"]
+colors = PackedColorArray(1, 0.907519, 0.560553, 1, 1, 0.898039, 0.772549, 1)
+
+[sub_resource type="Gradient" id="Gradient_na4ag"]
+offsets = PackedFloat32Array(0.196721, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.998523, 0.167369, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6dnk"]
+radius = 31.0
+height = 1464.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 30
@@ -21,3 +33,36 @@ shape = SubResource("CircleShape2D_o4bc4")
 wait_time = 0.2
 one_shot = true
 autostart = true
+
+[node name="PlayerAttack" type="Node2D" parent="."]
+
+[node name="BeamParticles" type="CPUParticles2D" parent="PlayerAttack"]
+rotation = 6.28319
+amount = 48
+lifetime = 1.2
+speed_scale = 2.0
+texture = ExtResource("3_fkf0s")
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1200.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+scale_amount_min = 0.3
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_l677k")
+color_initial_ramp = SubResource("Gradient_na4ag")
+
+[node name="BeamArea" type="Area2D" parent="PlayerAttack"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttack/BeamArea"]
+position = Vector2(720, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v6dnk")
+
+[connection signal="body_entered" from="PlayerAttack/BeamArea" to="." method="_on_beam_area_body_entered"]

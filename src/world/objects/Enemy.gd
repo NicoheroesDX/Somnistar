@@ -1,9 +1,11 @@
 extends AnimatableBody2D
 
 var speed = 0
+var health = 500
 
 @onready var player = get_parent().get_node("Player")
 @onready var shootTimer = get_node("ShootTimer")
+@onready var healthLabel = get_node("HealthLabel")
 
 var shot_scene: PackedScene
 
@@ -11,12 +13,21 @@ func _ready():
 	shot_scene = preload("res://src/world/objects/EvilShot.tscn");
 
 func _process(delta):
+	healthLabel.text = str(health)
 	if global_position.x < -1000:
 		queue_free()
 
 func _physics_process(delta):
+	if health <= 0:
+		die()
 	speed = -0.02 * Global.speed;
 	move_and_collide(Vector2(speed, 0))
+
+func deal_damage(damage):
+	health -= damage;
+
+func die():
+	queue_free();
 
 func kill_player():
 	player.die();
