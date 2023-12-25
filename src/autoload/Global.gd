@@ -1,7 +1,7 @@
 extends Node
 
 var speed = 0
-var collectedLight = 10000
+var collectedLight = 0
 
 signal update_collected_light_signal(new_light_amount, old_light_amount)
 
@@ -15,3 +15,19 @@ func change_collected_light(lightAmountOperation):
 		newLightAmount = 0;
 	collectedLight = newLightAmount;
 	update_collected_light_signal.emit(newLightAmount, oldLightAmount)
+
+func reset_game_data():
+	speed = 0
+	collectedLight = 0
+
+func change_scene(pathToScene):
+	var mainScene = get_tree().root.get_node("MainScene").get_node("MainDisplay")
+	
+	if (mainScene != null):
+		var removable = mainScene.get_child(0)
+		mainScene.remove_child(removable)
+
+		var scene_to_instantiate = load(pathToScene)
+		var instantiated_scene = scene_to_instantiate.instantiate()
+		
+		mainScene.add_child(instantiated_scene)

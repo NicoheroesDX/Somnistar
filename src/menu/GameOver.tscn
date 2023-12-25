@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://bik15r0rra3xv"]
+
+[ext_resource type="Script" path="res://src/menu/GameOver.gd" id="1_b5hs8"]
+[ext_resource type="Texture2D" uid="uid://dxulol4drbr3l" path="res://src/menu/assets/graphics/game_over.png" id="1_jhm75"]
+[ext_resource type="AudioStream" uid="uid://ssqa480etk42" path="res://src/world/assets/sounds/Evil2.wav" id="3_25735"]
+
+[sub_resource type="Gradient" id="Gradient_j5l5r"]
+colors = PackedColorArray(0.275159, 3.23378e-07, 3.60981e-08, 1, 0.622993, 0.0149809, 2.88785e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2sxhp"]
+gradient = SubResource("Gradient_j5l5r")
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_b5hs8")
+
+[node name="Canvas" type="CanvasGroup" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Canvas"]
+rotation = 1.5708
+scale = Vector2(3, 1600)
+texture = SubResource("GradientTexture1D_2sxhp")
+
+[node name="GameOver" type="Sprite2D" parent="Canvas"]
+position = Vector2(0, -109)
+texture = ExtResource("1_jhm75")
+
+[node name="Button" type="Button" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 248.0
+offset_right = 48.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="FinalDistance" type="Label" parent="Canvas"]
+offset_left = -128.0
+offset_top = 88.0
+offset_right = 128.0
+offset_bottom = 128.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalLight" type="Label" parent="Canvas"]
+offset_left = -128.0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 192.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_25735")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="Canvas/Button" to="." method="_on_button_pressed"]

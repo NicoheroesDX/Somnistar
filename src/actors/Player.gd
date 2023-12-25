@@ -79,3 +79,4 @@ func _physics_process(delta):
 func die():
 	global_position.y = -300
 	velocity = Vector2(0,0)
+	Global.change_scene("res://src/menu/GameOver.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://da1iv8j2rkp0i"]
+[gd_scene load_steps=7 format=3 uid="uid://da1iv8j2rkp0i"]
 
 [ext_resource type="Texture2D" uid="uid://dmr4knr4l1d86" path="res://src/world/assets/graphics/cloud.png" id="1_0fhuc"]
 [ext_resource type="Script" path="res://src/world/objects/Cloud.gd" id="1_711f6"]
@@ -10,6 +10,27 @@ height = 176.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hfu0"]
 radius = 50.0
 height = 178.0
+
+[sub_resource type="Animation" id="Animation_lx8o7"]
+resource_name = "scaling"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 0.3), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_55hoe"]
+_data = {
+"scaling": SubResource("Animation_lx8o7")
+}
 
 [node name="Cloud" type="AnimatableBody2D"]
 collision_layer = 0
@@ -32,4 +53,10 @@ position = Vector2(3, -8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1hfu0")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_55hoe")
+}
+
 [connection signal="body_entered" from="PlayerBouncer" to="." method="_on_player_bouncer_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
