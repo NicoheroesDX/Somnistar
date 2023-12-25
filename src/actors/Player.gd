@@ -34,14 +34,6 @@ func _physics_process(delta):
 	if global_position.y > 800:
 		die();
 	
-	beam.emitting = Global.collectedLight > 0 && Input.is_action_pressed("player_shoot")
-	
-	if beam.emitting:
-		Global.change_collected_light(-20);
-		for body in beamHitbox.get_overlapping_bodies():
-			if (body.get_groups().has("enemy")):
-				body.deal_damage(15);
-	
 	Global.update_speed((700 + global_position.x) * 0.1)
 	
 	# Add the gravity.
@@ -56,6 +48,15 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+	beam.emitting = Global.collectedLight > 0 && Input.is_action_pressed("player_shoot")
+	
+	if beam.emitting:
+		Global.change_collected_light(-24);
+		velocity.x -= 150
+		for body in beamHitbox.get_overlapping_bodies():
+			if (body.get_groups().has("enemy")):
+				body.deal_damage(15);
+	
 	velocity.x -= AIR_RESISTANCE;
 	
 	if velocity.x > 0:
@@ -65,9 +66,13 @@ func _physics_process(delta):
 	
 	if stompCooldown.time_left == 0 && Global.collectedLight > 0 && Input.is_action_just_pressed("player_down"):
 		velocity.y = 1000;
-		Global.change_collected_light(-10);
+		Global.change_collected_light(-8);
 		stompCooldown.wait_time = 0.2;
 		stompCooldown.start();
+	
+	if Global.collectedLight > 0 && Input.is_action_pressed("player_up"):
+		velocity.y = 10;
+		Global.change_collected_light(-16);
 	
 	move_and_slide()
 
