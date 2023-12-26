@@ -25,7 +25,7 @@ func change_scene(pathToScene):
 	
 	if (mainScene != null):
 		var removable = mainScene.get_child(0)
-		mainScene.remove_child(removable)
+		removable.queue_free()
 
 		var scene_to_instantiate = load(pathToScene)
 		var instantiated_scene = scene_to_instantiate.instantiate()

@@ -7,6 +7,8 @@ var health = 500
 @onready var shootTimer = get_node("ShootTimer")
 @onready var healthLabel = get_node("HealthLabel")
 
+@onready var shootSound = get_node("ShootSound")
+
 var shot_scene: PackedScene
 
 func _ready():
@@ -38,6 +40,7 @@ func _on_player_killer_body_entered(body):
 
 func _on_shoot_timer_timeout():
 	if (global_position.x < 800):
+		shootSound.play()
 		var direction = (player.global_position - global_position).normalized()
 		var projectile_instance = shot_scene.instantiate()
 		projectile_instance.global_position = global_position

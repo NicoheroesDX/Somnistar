@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://da1iv8j2rkp0i"]
+[gd_scene load_steps=13 format=3 uid="uid://da1iv8j2rkp0i"]
 
 [ext_resource type="Texture2D" uid="uid://dmr4knr4l1d86" path="res://src/world/assets/graphics/cloud.png" id="1_0fhuc"]
 [ext_resource type="Script" path="res://src/world/objects/Cloud.gd" id="1_711f6"]
+[ext_resource type="Texture2D" uid="uid://c2xmp25tkdp4c" path="res://src/particles/assets/graphics/star_07.png" id="3_xh3wr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mxje"]
 radius = 56.0
@@ -13,7 +14,6 @@ height = 178.0
 
 [sub_resource type="Animation" id="Animation_lx8o7"]
 resource_name = "scaling"
-length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,6 +31,43 @@ tracks/0/keys = {
 _data = {
 "scaling": SubResource("Animation_lx8o7")
 }
+
+[sub_resource type="Curve" id="Curve_o2ukm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d6h5r"]
+curve = SubResource("Curve_o2ukm")
+
+[sub_resource type="Curve" id="Curve_y6pr4"]
+min_value = -10.0
+max_value = 10.0
+_data = [Vector2(0, -5.52747), 0.0, 0.0, 0, 0, Vector2(0.986667, 4.94506), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_csgxd"]
+curve_y = SubResource("Curve_y6pr4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_djgkl"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 0.5, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+spread = 10.0
+angular_velocity_min = 90.0
+angular_velocity_max = 120.0
+directional_velocity_min = 5.0
+directional_velocity_max = 30.0
+directional_velocity_curve = SubResource("CurveXYZTexture_csgxd")
+radial_velocity_min = 180.0
+radial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 0.1
+color = Color(1, 0.933333, 0, 1)
+alpha_curve = SubResource("CurveTexture_d6h5r")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
 
 [node name="Cloud" type="AnimatableBody2D"]
 collision_layer = 0
@@ -57,6 +94,16 @@ shape = SubResource("CapsuleShape2D_1hfu0")
 libraries = {
 "": SubResource("AnimationLibrary_55hoe")
 }
+
+[node name="CloudStompParticles" type="GPUParticles2D" parent="."]
+position = Vector2(20, -20)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_djgkl")
+texture = ExtResource("3_xh3wr")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+local_coords = true
 
 [connection signal="body_entered" from="PlayerBouncer" to="." method="_on_player_bouncer_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

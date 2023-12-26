@@ -5,6 +5,7 @@ var isUsed = false;
 
 @onready var player = get_parent().get_node("Player")
 @onready var animationPlayer = get_node("AnimationPlayer")
+@onready var cloudStompParticles = get_node("CloudStompParticles")
 
 func _process(delta):
 	if global_position.x < -1000:
@@ -16,6 +17,8 @@ func _physics_process(delta):
 
 func bounce_player():
 	if isUsed: return
+	if player.velocity.y > 600:
+		cloudStompParticles.emitting = true;
 	player.velocity.y = -400;
 	isUsed = true;
 	animationPlayer.play("scaling");

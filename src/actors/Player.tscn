@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgv48r2x7or7u"]
+[gd_scene load_steps=33 format=3 uid="uid://cgv48r2x7or7u"]
 
 [ext_resource type="Texture2D" uid="uid://b18jh1nedos2q" path="res://src/actors/assets/graphics/player.png" id="1_qfgtj"]
 [ext_resource type="Script" path="res://src/actors/Player.gd" id="1_vbwar"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dthwjiptvqngf" path="res://src/particles/assets/graphics/trace_07.png" id="3_hh3w2"]
 [ext_resource type="Texture2D" uid="uid://c2xmp25tkdp4c" path="res://src/particles/assets/graphics/star_07.png" id="3_wa222"]
 [ext_resource type="Texture2D" uid="uid://bjh2n62mnbgt5" path="res://src/particles/assets/graphics/slash_04.png" id="4_8k34u"]
+[ext_resource type="AudioStream" uid="uid://dn2ghgfe76ud6" path="res://src/actors/assets/sounds/beam.wav" id="7_ere42"]
+[ext_resource type="AudioStream" uid="uid://bw7iliw0ehsk7" path="res://src/actors/assets/sounds/bouncePlayer.wav" id="8_tmg03"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4bc4"]
 radius = 17.0
@@ -249,5 +251,11 @@ collision_mask = 64
 position = Vector2(720, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v6dnk")
+
+[node name="BeamSound" type="AudioStreamPlayer2D" parent="PlayerAttack"]
+stream = ExtResource("7_ere42")
+
+[node name="StompSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tmg03")
 
 [connection signal="body_entered" from="PlayerAttack/BeamArea" to="." method="_on_beam_area_body_entered"]

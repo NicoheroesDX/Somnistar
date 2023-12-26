@@ -53,7 +53,8 @@ position = Vector2(0, -135)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_habkx")
-volume_db = -20.0
+volume_db = -10.0
+autoplay = true
 
 [node name="WorldBorder" type="AnimatableBody2D" parent="."]
 collision_layer = 16
