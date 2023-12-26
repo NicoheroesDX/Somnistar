@@ -19,4 +19,9 @@ texture = ExtResource("2_t2mll")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vx05q")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -18,3 +18,6 @@ func attack_player():
 func _on_area_2d_body_entered(body):
 	if (body.get_groups().has("player")):
 		attack_player();
+
+func _on_timer_timeout():
+	queue_free();

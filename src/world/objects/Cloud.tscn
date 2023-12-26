@@ -36,7 +36,7 @@ _data = {
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_d6h5r"]
+[sub_resource type="CurveTexture" id="CurveTexture_pn4cp"]
 curve = SubResource("Curve_o2ukm")
 
 [sub_resource type="Curve" id="Curve_y6pr4"]
@@ -45,7 +45,7 @@ max_value = 10.0
 _data = [Vector2(0, -5.52747), 0.0, 0.0, 0, 0, Vector2(0.986667, 4.94506), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_csgxd"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cab3m"]
 curve_y = SubResource("Curve_y6pr4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_djgkl"]
@@ -58,14 +58,14 @@ angular_velocity_min = 90.0
 angular_velocity_max = 120.0
 directional_velocity_min = 5.0
 directional_velocity_max = 30.0
-directional_velocity_curve = SubResource("CurveXYZTexture_csgxd")
+directional_velocity_curve = SubResource("CurveXYZTexture_cab3m")
 radial_velocity_min = 180.0
 radial_velocity_max = 200.0
 gravity = Vector3(0, 98, 0)
 scale_min = 0.1
 scale_max = 0.1
 color = Color(1, 0.933333, 0, 1)
-alpha_curve = SubResource("CurveTexture_d6h5r")
+alpha_curve = SubResource("CurveTexture_pn4cp")
 hue_variation_min = -0.1
 hue_variation_max = 0.1
 
