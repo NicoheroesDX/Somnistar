@@ -5,7 +5,11 @@ const SPEED_LIMIT = 300.0
 const AIR_RESISTANCE = 10.0;
 
 @onready var stompCooldown = get_node("StompCooldown")
+@onready var glider = get_node("GlideParticles")
+@onready var stompParticles = get_node("StompParticles")
+
 @onready var beam = get_node("PlayerAttack/BeamParticles")
+@onready var beamCore = get_node("PlayerAttack/CoreParticles")
 @onready var beamHitbox = get_node("PlayerAttack/BeamArea")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -50,6 +54,8 @@ func _physics_process(delta):
 	
 	beam.emitting = Global.collectedLight > 0 && Input.is_action_pressed("player_shoot")
 	
+	beamCore.emitting = beam.emitting
+	
 	if beam.emitting:
 		Global.change_collected_light(-24);
 		velocity.x -= 150
@@ -72,7 +78,15 @@ func _physics_process(delta):
 	
 	if Global.collectedLight > 0 && Input.is_action_pressed("player_up"):
 		velocity.y = 10;
+		glider.emitting = true;
 		Global.change_collected_light(-16);
+	else:
+		glider.emitting = false;
+	
+	if velocity.y > 500:
+		stompParticles.emitting = true
+	else:
+		stompParticles.emitting = false
 	
 	move_and_slide()
 

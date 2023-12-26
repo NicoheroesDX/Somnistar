@@ -1,7 +1,7 @@
 extends Node
 
 var speed = 0
-var collectedLight = 0
+var collectedLight = 10000
 
 signal update_collected_light_signal(new_light_amount, old_light_amount)
 
