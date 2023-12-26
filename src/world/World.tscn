@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg8uw8ya3kggl"]
+[gd_scene load_steps=16 format=3 uid="uid://bg8uw8ya3kggl"]
 
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
 [ext_resource type="PackedScene" uid="uid://cgv48r2x7or7u" path="res://src/actors/Player.tscn" id="2_7ri8x"]
+[ext_resource type="AudioStream" uid="uid://ddn208sobtvni" path="res://src/world/assets/music/world.ogg" id="4_i20gf"]
 [ext_resource type="PackedScene" uid="uid://da1iv8j2rkp0i" path="res://src/world/objects/Cloud.tscn" id="5_jfnqv"]
-[ext_resource type="AudioStream" uid="uid://bwuykikcvqw6x" path="res://src/world/assets/music/world.mp3" id="6_habkx"]
+[ext_resource type="AudioStream" uid="uid://cctxhbq5p5n6s" path="res://src/world/assets/music/rare_world.ogg" id="5_yam8o"]
 [ext_resource type="Script" path="res://src/world/spawner/LightSpawner.gd" id="6_onydp"]
 [ext_resource type="Script" path="res://src/world/spawner/CloudSpawner.gd" id="6_u2jtw"]
 [ext_resource type="Script" path="res://src/world/spawner/EnemySpawner.gd" id="7_yv76f"]
@@ -51,10 +52,13 @@ position = Vector2(0, -135)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_habkx")
-volume_db = -10.0
-autoplay = true
+[node name="NormalBackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_i20gf")
+volume_db = -2.0
+
+[node name="RareBackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yam8o")
+volume_db = -2.0
 
 [node name="WorldBorder" type="AnimatableBody2D" parent="."]
 collision_layer = 16

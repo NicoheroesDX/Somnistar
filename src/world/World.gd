@@ -5,6 +5,15 @@ extends Node2D
 @onready var bgA: Sprite2D = get_node("BackgroundA");
 @onready var bgB: Sprite2D = get_node("BackgroundB");
 
+@onready var normalMusic: AudioStreamPlayer = get_node("NormalBackgroundMusic");
+@onready var rareMusic: AudioStreamPlayer = get_node("RareBackgroundMusic");
+
+func not_ready():
+	if (randi_range(1, 10) == 7):
+		rareMusic.play()
+	else:
+		normalMusic.play()
+
 func _physics_process(delta):
 	if (bgA.position.x < -1920):
 		bgA.position.x = 0;
