@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 
 Global="*res://src/autoload/Global.gd"
 
+[display]
+
+window/size/resizable=false
+
+[gui]
+
+theme/custom_font="res://src/menu/fonts/SingleDay-Regular.ttf"
+
 [input]
 
 player_left={

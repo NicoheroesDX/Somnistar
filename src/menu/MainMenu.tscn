@@ -1,0 +1,470 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0oo4ur7cclw"]
+
+[ext_resource type="Texture2D" uid="uid://co5btv64u806e" path="res://src/menu/assets/graphics/menu_background_large.png" id="1_cpt7v"]
+[ext_resource type="Script" path="res://src/menu/MainMenu.gd" id="1_fcn3m"]
+[ext_resource type="FontFile" uid="uid://3wwywn3fqhcm" path="res://src/menu/fonts/RubikBubbles-Regular.ttf" id="2_bxb67"]
+[ext_resource type="StyleBox" uid="uid://d25bhp8w0erod" path="res://src/menu/themes/button.tres" id="3_e5ac3"]
+[ext_resource type="StyleBox" uid="uid://mugmqckjl07j" path="res://src/menu/themes/button_hover.tres" id="3_lqol0"]
+[ext_resource type="StyleBox" uid="uid://dxsuaubn5vlxw" path="res://src/menu/themes/button_pressed.tres" id="6_ju34x"]
+
+[sub_resource type="Theme" id="Theme_1qyos"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = ExtResource("3_lqol0")
+Button/styles/normal = ExtResource("3_e5ac3")
+Button/styles/pressed = ExtResource("6_ju34x")
+
+[sub_resource type="Gradient" id="Gradient_r410l"]
+colors = PackedColorArray(0.0601211, 0.15589, 0.334348, 1, 0.144621, 0.269523, 0.514262, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q4k2x"]
+gradient = SubResource("Gradient_r410l")
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_fcn3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("1_cpt7v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GameTitle" type="Label" parent="."]
+offset_left = -432.0
+offset_top = -256.0
+offset_right = 566.0
+offset_bottom = -96.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_bxb67")
+theme_override_font_sizes/font_size = 64
+text = "Somnistar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(16.8203, -87.6474)
+scale = Vector2(1.44944, 1.96961)
+color = Color(0, 0, 0, 0.784314)
+polygon = PackedVector2Array(-409, -120, -231, 209, -409, 209)
+
+[node name="PlayRect" type="ColorRect" parent="."]
+offset_left = -520.0
+offset_top = -8.0
+offset_right = -312.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="PlayButton" type="Button" parent="PlayRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Play"
+
+[node name="TutorialRect" type="ColorRect" parent="."]
+offset_left = -496.0
+offset_top = 56.0
+offset_right = -288.0
+offset_bottom = 112.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="TutorialButton" type="Button" parent="TutorialRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Tutorial"
+
+[node name="OptionsRect" type="ColorRect" parent="."]
+offset_left = -472.0
+offset_top = 120.0
+offset_right = -264.0
+offset_bottom = 176.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="OptionsButton" type="Button" parent="OptionsRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Options"
+
+[node name="CreditsRect" type="ColorRect" parent="."]
+offset_left = -448.0
+offset_top = 184.0
+offset_right = -240.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="CreditsButton" type="Button" parent="CreditsRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Credits"
+
+[node name="ExitRect" type="ColorRect" parent="."]
+offset_left = -424.0
+offset_top = 248.0
+offset_right = -216.0
+offset_bottom = 304.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="ExitButton" type="Button" parent="ExitRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Exit"
+
+[node name="OptionsMenu" type="ColorRect" parent="."]
+visible = false
+offset_left = -640.0
+offset_top = -384.0
+offset_right = 640.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="OptionsBackground" type="Sprite2D" parent="OptionsMenu"]
+position = Vector2(640, 384)
+scale = Vector2(2, 512)
+texture = SubResource("GradientTexture1D_q4k2x")
+
+[node name="ColorRect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 896.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="OptionsTitle" type="Label" parent="OptionsMenu"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1280.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 32
+text = "Options
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXLabel" type="Label" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 216.0
+offset_right = 768.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 24
+text = "SFX Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 768.0
+offset_bottom = 280.0
+
+[node name="MusicLabel" type="Label" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 296.0
+offset_right = 768.0
+offset_bottom = 336.0
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 336.0
+offset_right = 768.0
+offset_bottom = 360.0
+
+[node name="ScreenSize" type="Label" parent="OptionsMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 376.0
+offset_right = 768.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 24
+text = "Screen Size
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen1Rect" type="ColorRect" parent="OptionsMenu"]
+offset_left = 504.0
+offset_top = 424.0
+offset_right = 560.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Screen1Button" type="Button" parent="OptionsMenu/Screen1Rect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+toggle_mode = true
+text = "1x"
+
+[node name="Screen2Rect" type="ColorRect" parent="OptionsMenu"]
+offset_left = 576.0
+offset_top = 424.0
+offset_right = 632.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Screen2Button" type="Button" parent="OptionsMenu/Screen2Rect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+toggle_mode = true
+text = "2x"
+
+[node name="Screen3Rect" type="ColorRect" parent="OptionsMenu"]
+offset_left = 648.0
+offset_top = 424.0
+offset_right = 704.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Screen3Button" type="Button" parent="OptionsMenu/Screen3Rect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+toggle_mode = true
+text = "3x"
+
+[node name="Screen4Rect" type="ColorRect" parent="OptionsMenu"]
+offset_left = 720.0
+offset_top = 424.0
+offset_right = 776.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Screen4Button" type="Button" parent="OptionsMenu/Screen4Rect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+toggle_mode = true
+text = "4x"
+
+[node name="CloseRect" type="ColorRect" parent="OptionsMenu"]
+offset_left = 536.0
+offset_top = 544.0
+offset_right = 744.0
+offset_bottom = 600.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="CloseButton" type="Button" parent="OptionsMenu/CloseRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Close"
+
+[node name="CreditsMenu" type="ColorRect" parent="."]
+visible = false
+offset_left = -640.0
+offset_top = -384.0
+offset_right = 640.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="CreditsBackground" type="Sprite2D" parent="CreditsMenu"]
+position = Vector2(640, 384)
+scale = Vector2(3.5, 512)
+texture = SubResource("GradientTexture1D_q4k2x")
+
+[node name="ColorRect" type="ColorRect" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 1088.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="CreditsTitle" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 1280.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 32
+text = "Credits
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgrammingLabel" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 216.0
+offset_right = 576.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 24
+text = "- Programming -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgrammingLabel1" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 16
+text = "NicoheroesDX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgrammingLabel2" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 288.0
+offset_right = 640.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 16
+text = "ChatGPT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsLabel" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 216.0
+offset_right = 1024.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 24
+text = "- Graphics -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsLabel1" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 256.0
+offset_right = 1088.0
+offset_bottom = 288.0
+theme_override_font_sizes/font_size = 16
+text = "NicoheroesDX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsLabel2" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 288.0
+offset_right = 1088.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 16
+text = "Midjourney"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicLabel" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 344.0
+offset_right = 576.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 24
+text = "- Music -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicLabel1" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 16
+text = "Mario Kart Arcade GP 2 - Rainbow Cup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicLabel2" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 416.0
+offset_right = 640.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 16
+text = "Mario Kart Arcade GP 2 - Rainbow Cup (Remix by Paulygon) "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AssetsLabel" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 344.0
+offset_right = 1024.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 24
+text = "- Assets -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AssetsLabel1" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 1088.0
+offset_bottom = 416.0
+theme_override_font_sizes/font_size = 16
+text = "Kenney Particle Pack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsSubtext" type="Label" parent="CreditsMenu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 488.0
+offset_right = 1088.0
+offset_bottom = 528.0
+theme_override_font_sizes/font_size = 24
+text = "This game was made with the Godot Game Engine!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseRect" type="ColorRect" parent="CreditsMenu"]
+offset_left = 536.0
+offset_top = 544.0
+offset_right = 744.0
+offset_bottom = 600.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="CloseCreditsButton" type="Button" parent="CreditsMenu/CloseRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+theme = SubResource("Theme_1qyos")
+text = "Close"
+
+[connection signal="pressed" from="PlayRect/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="OptionsRect/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CreditsRect/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="ExitRect/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/CloseRect/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="CreditsMenu/CloseRect/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]

@@ -8,7 +8,7 @@ extends Node2D
 @onready var normalMusic: AudioStreamPlayer = get_node("NormalBackgroundMusic");
 @onready var rareMusic: AudioStreamPlayer = get_node("RareBackgroundMusic");
 
-func not_ready():
+func _ready():
 	if (randi_range(1, 10) == 7):
 		rareMusic.play()
 	else:

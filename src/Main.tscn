@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpvnb7wn2plw"]
 
 [ext_resource type="Script" path="res://src/autoload/Global.gd" id="1_4iflo"]
-[ext_resource type="PackedScene" uid="uid://bg8uw8ya3kggl" path="res://src/world/World.tscn" id="2_8cjj5"]
+[ext_resource type="PackedScene" uid="uid://d0oo4ur7cclw" path="res://src/menu/MainMenu.tscn" id="2_wniwx"]
 
 [node name="MainScene" type="Node"]
 
@@ -10,4 +10,4 @@ script = ExtResource("1_4iflo")
 
 [node name="MainDisplay" type="Node" parent="."]
 
-[node name="World" parent="MainDisplay" instance=ExtResource("2_8cjj5")]
+[node name="MainMenu" parent="MainDisplay" instance=ExtResource("2_wniwx")]
