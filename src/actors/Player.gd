@@ -20,24 +20,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var isPlayingBeamSound = false;
 
-func _process(delta):
-	var closest_enemy = find_closest_enemy()
-
-func find_closest_enemy() -> Node2D:
-	var closest_enemy: Node2D = null
-	var min_distance = float('inf')
-	
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	
-	for enemy in enemies:
-		var distance = global_position.distance_to(enemy.global_position)
-		
-		if distance < min_distance and distance < 1000:
-			min_distance = distance
-			closest_enemy = enemy
-	
-	return closest_enemy
-
 func _physics_process(delta):
 	# Check if player is out of bounds
 	if global_position.y > 800:

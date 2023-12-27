@@ -254,8 +254,10 @@ shape = SubResource("CapsuleShape2D_v6dnk")
 
 [node name="BeamSound" type="AudioStreamPlayer2D" parent="PlayerAttack"]
 stream = ExtResource("7_ere42")
+bus = &"SFXBus"
 
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_tmg03")
+bus = &"SFXBus"
 
 [connection signal="body_entered" from="PlayerAttack/BeamArea" to="." method="_on_beam_area_body_entered"]

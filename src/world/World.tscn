@@ -55,10 +55,12 @@ position = Vector2(0, -135)
 [node name="NormalBackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_i20gf")
 volume_db = -2.0
+bus = &"MusicBus"
 
 [node name="RareBackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_yam8o")
 volume_db = -2.0
+bus = &"MusicBus"
 
 [node name="WorldBorder" type="AnimatableBody2D" parent="."]
 collision_layer = 16

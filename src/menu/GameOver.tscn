@@ -58,5 +58,6 @@ vertical_alignment = 1
 stream = ExtResource("3_25735")
 volume_db = -10.0
 autoplay = true
+bus = &"SFXBus"
 
 [connection signal="pressed" from="Canvas/Button" to="." method="_on_button_pressed"]

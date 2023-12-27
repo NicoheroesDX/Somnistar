@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0oo4ur7cclw"]
+[gd_scene load_steps=11 format=3 uid="uid://d0oo4ur7cclw"]
 
 [ext_resource type="Texture2D" uid="uid://co5btv64u806e" path="res://src/menu/assets/graphics/menu_background_large.png" id="1_cpt7v"]
 [ext_resource type="Script" path="res://src/menu/MainMenu.gd" id="1_fcn3m"]
 [ext_resource type="FontFile" uid="uid://3wwywn3fqhcm" path="res://src/menu/fonts/RubikBubbles-Regular.ttf" id="2_bxb67"]
+[ext_resource type="AudioStream" uid="uid://b1dgykl17475g" path="res://src/menu/assets/music/menu.ogg" id="3_4ckby"]
 [ext_resource type="StyleBox" uid="uid://d25bhp8w0erod" path="res://src/menu/themes/button.tres" id="3_e5ac3"]
 [ext_resource type="StyleBox" uid="uid://mugmqckjl07j" path="res://src/menu/themes/button_hover.tres" id="3_lqol0"]
 [ext_resource type="StyleBox" uid="uid://dxsuaubn5vlxw" path="res://src/menu/themes/button_pressed.tres" id="6_ju34x"]
@@ -29,6 +30,12 @@ position = Vector2(0, -20)
 texture = ExtResource("1_cpt7v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4ckby")
+volume_db = -2.0
+autoplay = true
+bus = &"MusicBus"
 
 [node name="GameTitle" type="Label" parent="."]
 offset_left = -432.0
@@ -57,6 +64,7 @@ offset_bottom = 48.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="PlayButton" type="Button" parent="PlayRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -72,6 +80,7 @@ offset_bottom = 112.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="TutorialButton" type="Button" parent="TutorialRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -87,6 +96,7 @@ offset_bottom = 176.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="OptionsButton" type="Button" parent="OptionsRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -102,6 +112,7 @@ offset_bottom = 240.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="CreditsButton" type="Button" parent="CreditsRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -117,6 +128,7 @@ offset_bottom = 304.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="ExitButton" type="Button" parent="ExitRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -173,6 +185,9 @@ offset_left = 512.0
 offset_top = 256.0
 offset_right = 768.0
 offset_bottom = 280.0
+min_value = -30.0
+max_value = 0.0
+step = 5.0
 
 [node name="MusicLabel" type="Label" parent="OptionsMenu"]
 layout_mode = 0
@@ -191,6 +206,9 @@ offset_left = 512.0
 offset_top = 336.0
 offset_right = 768.0
 offset_bottom = 360.0
+min_value = -30.0
+max_value = 0.0
+step = 5.0
 
 [node name="ScreenSize" type="Label" parent="OptionsMenu"]
 layout_mode = 0
@@ -205,6 +223,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Screen1Rect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
 offset_left = 504.0
 offset_top = 424.0
 offset_right = 560.0
@@ -212,6 +231,7 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="Screen1Button" type="Button" parent="OptionsMenu/Screen1Rect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
@@ -221,6 +241,7 @@ toggle_mode = true
 text = "1x"
 
 [node name="Screen2Rect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
 offset_left = 576.0
 offset_top = 424.0
 offset_right = 632.0
@@ -228,6 +249,7 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="Screen2Button" type="Button" parent="OptionsMenu/Screen2Rect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
@@ -237,6 +259,7 @@ toggle_mode = true
 text = "2x"
 
 [node name="Screen3Rect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
 offset_left = 648.0
 offset_top = 424.0
 offset_right = 704.0
@@ -244,6 +267,7 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="Screen3Button" type="Button" parent="OptionsMenu/Screen3Rect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
@@ -253,6 +277,7 @@ toggle_mode = true
 text = "3x"
 
 [node name="Screen4Rect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
 offset_left = 720.0
 offset_top = 424.0
 offset_right = 776.0
@@ -260,6 +285,7 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="Screen4Button" type="Button" parent="OptionsMenu/Screen4Rect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
@@ -269,6 +295,7 @@ toggle_mode = true
 text = "4x"
 
 [node name="CloseRect" type="ColorRect" parent="OptionsMenu"]
+layout_mode = 0
 offset_left = 536.0
 offset_top = 544.0
 offset_right = 744.0
@@ -276,6 +303,7 @@ offset_bottom = 600.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="CloseButton" type="Button" parent="OptionsMenu/CloseRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -448,6 +476,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CloseRect" type="ColorRect" parent="CreditsMenu"]
+layout_mode = 0
 offset_left = 536.0
 offset_top = 544.0
 offset_right = 744.0
@@ -455,6 +484,7 @@ offset_bottom = 600.0
 color = Color(0, 0, 0, 0.901961)
 
 [node name="CloseCreditsButton" type="Button" parent="CreditsMenu/CloseRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
@@ -466,5 +496,11 @@ text = "Close"
 [connection signal="pressed" from="OptionsRect/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CreditsRect/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="ExitRect/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="OptionsMenu/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="OptionsMenu/Screen1Rect/Screen1Button" to="." method="_on_screen_1_button_toggled"]
+[connection signal="toggled" from="OptionsMenu/Screen2Rect/Screen2Button" to="." method="_on_screen_2_button_toggled"]
+[connection signal="toggled" from="OptionsMenu/Screen3Rect/Screen3Button" to="." method="_on_screen_3_button_toggled"]
+[connection signal="toggled" from="OptionsMenu/Screen4Rect/Screen4Button" to="." method="_on_screen_4_button_toggled"]
 [connection signal="pressed" from="OptionsMenu/CloseRect/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="CreditsMenu/CloseRect/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]

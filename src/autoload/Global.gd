@@ -3,6 +3,8 @@ extends Node
 var speed = 0
 var collectedLight = 0
 
+const BASE_WINDOW_SIZE = Vector2i(1152, 648)
+
 signal update_collected_light_signal(new_light_amount, old_light_amount)
 
 func update_speed(newGlobalSpeed):
