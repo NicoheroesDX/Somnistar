@@ -238,6 +238,7 @@ offset_right = 48.0
 offset_bottom = 48.0
 theme = SubResource("Theme_1qyos")
 toggle_mode = true
+button_pressed = true
 text = "1x"
 
 [node name="Screen2Rect" type="ColorRect" parent="OptionsMenu"]
@@ -309,7 +310,7 @@ offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
 theme = SubResource("Theme_1qyos")
-text = "Close"
+text = "Save & Close"
 
 [node name="CreditsMenu" type="ColorRect" parent="."]
 visible = false

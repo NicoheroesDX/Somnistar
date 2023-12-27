@@ -23,15 +23,19 @@ func _ready():
 	var current_music_volume = AudioServer.get_bus_volume_db(music_audio_bus)
 	var current_sfx_volume = AudioServer.get_bus_volume_db(sfx_audio_bus)
 	
-	musicSlider.value = current_music_volume;
-	sfxSlider.value = current_sfx_volume;
-	screenSizeButtons[0].set_pressed(true);
+	if not load_options_from_file():
+		print("Unable to load from file!")
+		musicSlider.value = current_music_volume;
+		sfxSlider.value = current_sfx_volume;
+		screenSizeButtons[0].set_pressed(true);
 
 func show_options_menu():
 	optionsMenu.visible = true
 	optionsMenu.mouse_filter = Control.MOUSE_FILTER_PASS
 	
-func hide_options_menu():
+func hide_options_menu(saveChanges: bool = false):
+	if (saveChanges):
+		save_all_options()
 	optionsMenu.visible = false
 	optionsMenu.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
@@ -57,7 +61,7 @@ func _on_exit_button_pressed():
 	get_tree().quit()
 
 func _on_close_button_pressed():
-	hide_options_menu()
+	hide_options_menu(true)
 
 func _on_close_credits_button_pressed():
 	hide_credits_menu()
@@ -105,3 +109,41 @@ func _on_screen_4_button_toggled(toggled_on):
 	if toggled_on:
 		untoggle_all_buttons_except(3);
 		change_screen_size(2.5);
+
+func get_toggeled_button():
+	for i in screenSizeButtons.size():
+		if screenSizeButtons[i].is_pressed(): 
+			return i
+	return -1;
+
+func save_all_options():
+	var config = ConfigFile.new()
+	
+	var toggeledButton = get_toggeled_button();
+	if toggeledButton < 0 || toggeledButton >= screenSizeButtons.size(): 
+		toggeledButton = 0;
+	
+	config.set_value("SFX", "volume", sfxSlider.value)
+	config.set_value("Music", "volume", musicSlider.value)
+	config.set_value("Screen", "size", toggeledButton)
+	
+	config.save(Global.CONFIG_FILE_LOCATION)
+	print("Successfully saved to file!")
+
+func load_options_from_file():
+	var config = ConfigFile.new()
+	
+	if config.load(Global.CONFIG_FILE_LOCATION) == OK:
+		var sfxVolume = config.get_value("SFX", "volume")
+		var musicVolume = config.get_value("Music", "volume")
+		var screenSize = config.get_value("Screen", "size")
+		
+		sfxSlider.value = sfxVolume
+		musicSlider.value = musicVolume
+		screenSizeButtons[screenSize].set_pressed(true)
+		
+		print("Successfully loaded from file!")
+		
+		return true;
+	else:
+		return false;
