@@ -22,6 +22,7 @@ Global="*res://src/autoload/Global.gd"
 
 [display]
 
+window/size/initial_position_type=0
 window/size/resizable=false
 
 [gui]
