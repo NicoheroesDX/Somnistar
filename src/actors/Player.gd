@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if global_position.y > 800:
 		die();
 	
-	Global.update_speed((700 + global_position.x) * 0.1)
+	Global.update_speed(min(Global.distance * 0.001, 30) + (700 + global_position.x) * 0.1)
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -105,6 +105,4 @@ func _physics_process(delta):
 	move_and_slide()
 
 func die():
-	global_position.y = -300
-	velocity = Vector2(0,0)
-	Global.change_scene("res://src/menu/GameOver.tscn")
+	Global.change_scene_with_translation("res://src/menu/GameOver.tscn")

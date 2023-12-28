@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bg8uw8ya3kggl"]
+[gd_scene load_steps=21 format=3 uid="uid://bg8uw8ya3kggl"]
 
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://src/world/spawner/LightSpawner.gd" id="6_onydp"]
 [ext_resource type="Script" path="res://src/world/spawner/CloudSpawner.gd" id="6_u2jtw"]
 [ext_resource type="Script" path="res://src/world/spawner/EnemySpawner.gd" id="7_yv76f"]
-[ext_resource type="Script" path="res://src/world/gui/LightAmount.gd" id="8_ejhmm"]
+[ext_resource type="StyleBox" uid="uid://mugmqckjl07j" path="res://src/menu/themes/button_hover.tres" id="11_71foi"]
+[ext_resource type="StyleBox" uid="uid://d25bhp8w0erod" path="res://src/menu/themes/button.tres" id="12_5j0qw"]
+[ext_resource type="StyleBox" uid="uid://dxsuaubn5vlxw" path="res://src/menu/themes/button_pressed.tres" id="13_ywunm"]
 
 [sub_resource type="GDScript" id="GDScript_loyg1"]
 script/source = "extends Sprite2D
@@ -33,6 +35,22 @@ size = Vector2(74, 1080)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ofya1"]
 radius = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56o76"]
+bg_color = Color(0.0862745, 0.0627451, 0.00392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mek8"]
+bg_color = Color(0.839216, 0.67451, 0.258824, 1)
+
+[sub_resource type="Theme" id="Theme_n6tc8"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = ExtResource("11_71foi")
+Button/styles/normal = ExtResource("12_5j0qw")
+Button/styles/pressed = ExtResource("13_ywunm")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_56o76")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_8mek8")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tcj0p")
@@ -133,20 +151,53 @@ position = Vector2(847, 141)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGroup"]
-offset_left = -576.0
-offset_top = -324.0
-offset_right = -536.0
-offset_bottom = -284.0
+[node name="TopContainer" type="VBoxContainer" parent="CanvasGroup"]
+offset_left = -320.0
+offset_top = -304.0
+offset_right = 320.0
+offset_bottom = -194.0
 
-[node name="LightText" type="Label" parent="CanvasGroup/HBoxContainer"]
-layout_mode = 2
-text = "Collected Light: "
+[node name="Polygon2D" type="Polygon2D" parent="CanvasGroup/TopContainer"]
+color = Color(0, 0, 0, 0.392157)
+polygon = PackedVector2Array(-8, -2, -24, 18, 648, 18, 664, -2)
 
-[node name="LightAmount" type="Label" parent="CanvasGroup/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasGroup/TopContainer"]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-text = "99"
-script = ExtResource("8_ejhmm")
+theme = SubResource("Theme_n6tc8")
+max_value = 20000.0
+value = 1000.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasGroup/TopContainer/ProgressBar"]
+layout_mode = 2
+offset_top = -1.0
+offset_right = 640.0
+offset_bottom = 16.0
+theme_override_colors/font_outline_color = Color(0.290196, 0.278431, 0.0705882, 1)
+theme_override_constants/outline_size = 3
+text = "Collected Lumen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LumenNumber" type="Label" parent="CanvasGroup/TopContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomContainer" type="VBoxContainer" parent="CanvasGroup"]
+offset_left = -320.0
+offset_top = 263.0
+offset_right = 320.0
+offset_bottom = 304.0
+
+[node name="DistanceNumber" type="Label" parent="CanvasGroup/BottomContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="WorldBorder/DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="body_entered" from="Spawn/SpawnEmitter" to="." method="_on_spawn_emitter_body_entered"]
