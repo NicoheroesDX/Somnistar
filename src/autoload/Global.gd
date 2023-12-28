@@ -4,7 +4,7 @@ const BASE_WINDOW_SIZE = Vector2i(1152, 648)
 const CONFIG_FILE_LOCATION = "user://somnistar_options.cfg"
 
 var speed = 0
-var collectedLight = 0
+var collectedLight = 100000
 
 signal update_collected_light_signal(new_light_amount, old_light_amount)
 

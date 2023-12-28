@@ -3,6 +3,7 @@ extends AnimatableBody2D
 class_name Light
 
 @onready var timer = get_node("DespawnTimer")
+@onready var collectSound = get_node("CollectionSound")
 
 @onready var passiveParticles = get_node("GPUParticles2D")
 @onready var collectionParticles = get_node("CollectionParticles")
@@ -32,4 +33,5 @@ func collect():
 		Global.change_collected_light(lightValue);
 		passiveParticles.emitting = false;
 		collectionParticles.emitting = true;
+		collectSound.play();
 		timer.start();

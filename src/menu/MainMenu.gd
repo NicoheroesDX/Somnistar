@@ -48,7 +48,7 @@ func hide_credits_menu():
 	creditsMenu.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_play_button_pressed():
-	Global.reset_game_data();
+	#Global.reset_game_data();
 	Global.change_scene("res://src/world/World.tscn")
 
 func _on_options_button_pressed():

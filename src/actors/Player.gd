@@ -13,12 +13,18 @@ const AIR_RESISTANCE = 10.0;
 @onready var beamHitbox = get_node("PlayerAttack/BeamArea")
 
 @onready var stompSound = get_node("StompSound")
+@onready var glideSound = get_node("GlideSound")
+@onready var glideStopSound = get_node("GlideStopSound")
+
 @onready var beamSound = get_node("PlayerAttack/BeamSound")
+@onready var beamFade = get_node("PlayerAttack/BeamFadeout")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var isPlayingBeamSound = false;
+
+var glideLength = 0
 
 func _physics_process(delta):
 	# Check if player is out of bounds
@@ -39,9 +45,17 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+	var hasBeamedLastFrame = false;
+	
+	if beam.is_emitting():
+		hasBeamedLastFrame = true;
+	
 	beam.emitting = Global.collectedLight > 0 && Input.is_action_pressed("player_shoot")
 	
 	beamCore.emitting = beam.emitting
+	
+	if (hasBeamedLastFrame && not beam.emitting):
+		beamFade.play();
 	
 	if beam.emitting:
 		Global.change_collected_light(-24);
@@ -72,10 +86,16 @@ func _physics_process(delta):
 	
 	if Global.collectedLight > 0 && Input.is_action_pressed("player_up"):
 		velocity.y = 10;
+		if not glider.emitting:
+			glideSound.play();
 		glider.emitting = true;
+		glideLength += 1;
 		Global.change_collected_light(-16);
 	else:
+		if glideLength > 25 && glider.emitting:
+			glideStopSound.play();
 		glider.emitting = false;
+		glideLength = 0
 	
 	if velocity.y > 600:
 		stompParticles.emitting = true

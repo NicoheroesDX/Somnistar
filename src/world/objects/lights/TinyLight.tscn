@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsw71huesqbr1"]
+[gd_scene load_steps=17 format=3 uid="uid://dsw71huesqbr1"]
 
 [ext_resource type="Script" path="res://src/world/objects/lights/TinyLight.gd" id="1_olwxx"]
 [ext_resource type="Texture2D" uid="uid://cbnukecw1ygji" path="res://src/particles/assets/graphics/star_09.png" id="2_nnyja"]
+[ext_resource type="AudioStream" uid="uid://c6k52g3oijd30" path="res://src/world/assets/sounds/tiny_light.ogg" id="3_lat6l"]
 
 [sub_resource type="Gradient" id="Gradient_6oga4"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -126,6 +127,10 @@ shape = SubResource("CapsuleShape2D_wmhil")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="CollectionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lat6l")
+bus = &"SFXBus"
 
 [connection signal="body_entered" from="PlayerCollector" to="." method="_on_player_collector_body_entered"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cgv48r2x7or7u"]
+[gd_scene load_steps=36 format=3 uid="uid://cgv48r2x7or7u"]
 
 [ext_resource type="Texture2D" uid="uid://b18jh1nedos2q" path="res://src/actors/assets/graphics/player.png" id="1_qfgtj"]
 [ext_resource type="Script" path="res://src/actors/Player.gd" id="1_vbwar"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://c2xmp25tkdp4c" path="res://src/particles/assets/graphics/star_07.png" id="3_wa222"]
 [ext_resource type="Texture2D" uid="uid://bjh2n62mnbgt5" path="res://src/particles/assets/graphics/slash_04.png" id="4_8k34u"]
 [ext_resource type="AudioStream" uid="uid://dn2ghgfe76ud6" path="res://src/actors/assets/sounds/beam.wav" id="7_ere42"]
+[ext_resource type="AudioStream" uid="uid://1hcqiao33rmv" path="res://src/actors/assets/sounds/beam_fadeout.ogg" id="8_obyvh"]
 [ext_resource type="AudioStream" uid="uid://bw7iliw0ehsk7" path="res://src/actors/assets/sounds/bouncePlayer.wav" id="8_tmg03"]
+[ext_resource type="AudioStream" uid="uid://be2snlci3wc2e" path="res://src/actors/assets/sounds/glide.ogg" id="10_a1ade"]
+[ext_resource type="AudioStream" uid="uid://dquxdqiuquv4k" path="res://src/actors/assets/sounds/glide_stop.ogg" id="11_dmyvk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4bc4"]
 radius = 17.0
@@ -254,10 +257,26 @@ shape = SubResource("CapsuleShape2D_v6dnk")
 
 [node name="BeamSound" type="AudioStreamPlayer2D" parent="PlayerAttack"]
 stream = ExtResource("7_ere42")
+volume_db = -8.0
+bus = &"SFXBus"
+
+[node name="BeamFadeout" type="AudioStreamPlayer2D" parent="PlayerAttack"]
+stream = ExtResource("8_obyvh")
+volume_db = 3.0
+max_polyphony = 4
 bus = &"SFXBus"
 
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_tmg03")
+max_polyphony = 4
 bus = &"SFXBus"
+
+[node name="GlideSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_a1ade")
+max_polyphony = 16
+bus = &"SFXBus"
+
+[node name="GlideStopSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_dmyvk")
 
 [connection signal="body_entered" from="PlayerAttack/BeamArea" to="." method="_on_beam_area_body_entered"]
