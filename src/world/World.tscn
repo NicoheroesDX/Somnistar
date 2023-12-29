@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bg8uw8ya3kggl"]
+[gd_scene load_steps=22 format=3 uid="uid://bg8uw8ya3kggl"]
 
 [ext_resource type="Texture2D" uid="uid://dc3m3go8wamak" path="res://src/world/assets/graphics/background.png" id="1_i4fd4"]
 [ext_resource type="Script" path="res://src/world/World.gd" id="1_tcj0p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://src/world/spawner/LightSpawner.gd" id="6_onydp"]
 [ext_resource type="Script" path="res://src/world/spawner/CloudSpawner.gd" id="6_u2jtw"]
 [ext_resource type="Script" path="res://src/world/spawner/EnemySpawner.gd" id="7_yv76f"]
+[ext_resource type="PackedScene" uid="uid://rftop0hsts10" path="res://src/actors/Wall.tscn" id="10_gl7no"]
 [ext_resource type="StyleBox" uid="uid://mugmqckjl07j" path="res://src/menu/themes/button_hover.tres" id="11_71foi"]
 [ext_resource type="StyleBox" uid="uid://d25bhp8w0erod" path="res://src/menu/themes/button.tres" id="12_5j0qw"]
 [ext_resource type="StyleBox" uid="uid://dxsuaubn5vlxw" path="res://src/menu/themes/button_pressed.tres" id="13_ywunm"]
@@ -149,7 +150,12 @@ position = Vector2(574, 139)
 [node name="Cloud4" parent="." instance=ExtResource("5_jfnqv")]
 position = Vector2(847, 141)
 
+[node name="Wall" parent="." instance=ExtResource("10_gl7no")]
+position = Vector2(-1000, 0)
+
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
+top_level = true
+visibility_layer = 3
 
 [node name="TopContainer" type="VBoxContainer" parent="CanvasGroup"]
 offset_left = -320.0

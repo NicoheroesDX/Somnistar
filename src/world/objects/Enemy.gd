@@ -43,7 +43,6 @@ func _physics_process(delta):
 func deal_damage(damage):
 	if not isDead:
 		if hurtSoundCooldown.time_left <= 0:
-			print("Playing Hurt Sound!")
 			hurtSound.pitch_scale = randf_range(0.6, 1.4)
 			hurtSound.play();
 			hurtSoundCooldown.start();
