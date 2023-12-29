@@ -80,6 +80,7 @@ func _physics_process(delta):
 	if stompCooldown.time_left == 0 && Global.collectedLight > 0 && Input.is_action_just_pressed("player_down"):
 		velocity.y = 1000;
 		Global.change_collected_light(-8);
+		stompSound.pitch_scale = randf_range(0.9, 1.1)
 		stompSound.play();
 		stompCooldown.wait_time = 0.2;
 		stompCooldown.start();

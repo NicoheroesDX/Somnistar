@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1wexe0cy3212"]
+[gd_scene load_steps=11 format=3 uid="uid://c1wexe0cy3212"]
 
 [ext_resource type="Script" path="res://src/world/objects/Enemy.gd" id="1_bgkwr"]
 [ext_resource type="Texture2D" uid="uid://dlcoro0v2fcft" path="res://src/world/assets/graphics/enemy.png" id="2_5slqu"]
 [ext_resource type="AudioStream" uid="uid://tb14jisctas7" path="res://src/world/assets/sounds/enemyShot.wav" id="3_s133e"]
+[ext_resource type="AudioStream" uid="uid://yg5nci6safb5" path="res://src/world/assets/sounds/enemy_charge.ogg" id="4_nha4d"]
+[ext_resource type="AudioStream" uid="uid://db6b25uxw04r3" path="res://src/world/assets/sounds/enemy_hurt.ogg" id="5_k2pey"]
+[ext_resource type="AudioStream" uid="uid://bvh0s72culqv1" path="res://src/world/assets/sounds/enemy_death.ogg" id="6_udhst"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mxje"]
 radius = 49.0
@@ -11,6 +14,38 @@ height = 148.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hfu0"]
 radius = 57.0
 height = 170.0
+
+[sub_resource type="Animation" id="Animation_ucltx"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1.5), Vector2(2, 1.5), Vector2(0.25, 1), Vector2(1, 0.25), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 4.71239, -3.49066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fs135"]
+_data = {
+"death": SubResource("Animation_ucltx")
+}
 
 [node name="Enemy" type="AnimatableBody2D" groups=["enemy"]]
 collision_layer = 64
@@ -22,11 +57,13 @@ script = ExtResource("1_bgkwr")
 texture = ExtResource("2_5slqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1mxje")
 
 [node name="PlayerKiller" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKiller"]
 position = Vector2(3, 0)
@@ -35,6 +72,15 @@ shape = SubResource("CapsuleShape2D_1hfu0")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
+
+[node name="ChargeTimer" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+
+[node name="HurtSoundCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 autostart = true
 
 [node name="HealthLabel" type="Label" parent="."]
@@ -47,7 +93,34 @@ vertical_alignment = 1
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_s133e")
+volume_db = -5.0
 bus = &"SFXBus"
+
+[node name="ChargeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nha4d")
+volume_db = 1.0
+bus = &"SFXBus"
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k2pey")
+volume_db = 4.0
+max_polyphony = 20
+bus = &"SFXBus"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_udhst")
+volume_db = 5.0
+bus = &"SFXBus"
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fs135")
+}
 
 [connection signal="body_entered" from="PlayerKiller" to="." method="_on_player_killer_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
