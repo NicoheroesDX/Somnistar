@@ -6,6 +6,9 @@ var speed = 0
 @onready var player = get_parent().get_node("Player")
 
 @onready var playerKiller = get_node("PlayerKiller")
+@onready var wallSound = get_node("WallSound")
+
+var canPlayWallSound = true
 
 func _physics_process(delta):
 	if Global.distance > 30000:
@@ -29,11 +32,19 @@ func _physics_process(delta):
 	else:
 		base_speed = 2.5
 	
-	speed = base_speed + (-0.05 * Global.speed);
+	speed = base_speed + (0.2 * Global.skippedEnemys) + (-0.05 * Global.speed);
 	move_and_collide(Vector2(speed, 0))
 	
 	if global_position.x < -1500:
 		global_position.x = -1500
+	
+	if canPlayWallSound && global_position.x > -1220:
+		wallSound.play()
+		canPlayWallSound = false;
+	
+	if global_position.x < -1280:
+		wallSound.pitch_scale = randf_range(0.8, 1.2)
+		canPlayWallSound = true;
 	
 	for body in playerKiller.get_overlapping_bodies():
 			if (body.get_groups().has("player")):

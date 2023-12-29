@@ -70,6 +70,7 @@ script = SubResource("GDScript_loyg1")
 position = Vector2(0, -135)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="NormalBackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_i20gf")

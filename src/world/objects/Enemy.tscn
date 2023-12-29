@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1wexe0cy3212"]
+[gd_scene load_steps=19 format=3 uid="uid://c1wexe0cy3212"]
 
 [ext_resource type="Script" path="res://src/world/objects/Enemy.gd" id="1_bgkwr"]
 [ext_resource type="Texture2D" uid="uid://dlcoro0v2fcft" path="res://src/world/assets/graphics/enemy.png" id="2_5slqu"]
@@ -6,6 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://yg5nci6safb5" path="res://src/world/assets/sounds/enemy_charge.ogg" id="4_nha4d"]
 [ext_resource type="AudioStream" uid="uid://db6b25uxw04r3" path="res://src/world/assets/sounds/enemy_hurt.ogg" id="5_k2pey"]
 [ext_resource type="AudioStream" uid="uid://bvh0s72culqv1" path="res://src/world/assets/sounds/enemy_death.ogg" id="6_udhst"]
+[ext_resource type="StyleBox" uid="uid://mugmqckjl07j" path="res://src/menu/themes/button_hover.tres" id="7_l8xtu"]
+[ext_resource type="StyleBox" uid="uid://d25bhp8w0erod" path="res://src/menu/themes/button.tres" id="8_6qome"]
+[ext_resource type="StyleBox" uid="uid://dxsuaubn5vlxw" path="res://src/menu/themes/button_pressed.tres" id="9_p5ejv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mxje"]
 radius = 49.0
@@ -47,6 +50,28 @@ _data = {
 "death": SubResource("Animation_ucltx")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56o76"]
+bg_color = Color(0.0862745, 0.0627451, 0.00392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mek8"]
+bg_color = Color(0.839216, 0.67451, 0.258824, 1)
+
+[sub_resource type="Theme" id="Theme_18xut"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = ExtResource("7_l8xtu")
+Button/styles/normal = ExtResource("8_6qome")
+Button/styles/pressed = ExtResource("9_p5ejv")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_56o76")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_8mek8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaxe0"]
+bg_color = Color(0.129412, 0, 0.027451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ergt1"]
+bg_color = Color(0.890196, 0, 0.133333, 1)
+
 [node name="Enemy" type="AnimatableBody2D" groups=["enemy"]]
 collision_layer = 64
 collision_mask = 0
@@ -83,14 +108,6 @@ wait_time = 0.2
 one_shot = true
 autostart = true
 
-[node name="HealthLabel" type="Label" parent="."]
-offset_left = -38.0
-offset_top = -93.0
-offset_right = 40.0
-offset_bottom = -62.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_s133e")
 volume_db = -5.0
@@ -119,6 +136,28 @@ wait_time = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_fs135")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = -80.0
+offset_right = 49.0
+offset_bottom = -64.0
+grow_horizontal = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 96.0
+offset_bottom = 15.0
+theme = SubResource("Theme_18xut")
+theme_override_styles/background = SubResource("StyleBoxFlat_oaxe0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ergt1")
+max_value = 500.0
+step = 1.0
+show_percentage = false
 
 [connection signal="body_entered" from="PlayerKiller" to="." method="_on_player_killer_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

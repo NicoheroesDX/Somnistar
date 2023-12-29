@@ -1,12 +1,14 @@
 extends AnimatableBody2D
 
 var speed = 0
-var health = 500
+var maxHealth = 0
+var health = 0
 
 @onready var player = get_parent().get_node("Player")
 @onready var shootTimer = get_node("ShootTimer")
 @onready var chargeTimer = get_node("ChargeTimer")
-@onready var healthLabel = get_node("HealthLabel")
+@onready var healthBarBorder = get_node("ColorRect")
+@onready var healthBar: ProgressBar = get_node("ColorRect/ProgressBar")
 
 @onready var hurtSoundCooldown = get_node("HurtSoundCooldown")
 
@@ -24,13 +26,32 @@ var isDead = false
 
 func _ready():
 	shot_scene = preload("res://src/world/objects/EvilShot.tscn");
+	if Global.distance > 20000:
+		maxHealth = randi_range(800, 1000)
+	elif Global.distance > 15000:
+		maxHealth = randi_range(700, 900)
+	elif Global.distance > 10000:
+		maxHealth = randi_range(600, 800)
+	elif Global.distance > 5000:
+		maxHealth = randi_range(500, 700)
+	else:
+		maxHealth = randi_range(400, 600)
+	
+	healthBar.max_value = maxHealth
+	health = maxHealth
 
 func _process(delta):
 	if not isDead:
-		healthLabel.text = str(health)
+		healthBar.value = health
+	if isDead || health == maxHealth:
+		healthBar.visible = false
+		healthBarBorder.visible = false
 	else:
-		healthLabel.text = ""
+		healthBar.visible = true
+		healthBarBorder.visible = true
 	if global_position.x < -1000:
+		if not isDead:
+			Global.skippedEnemys += 1;
 		queue_free()
 
 func _physics_process(delta):
@@ -41,7 +62,7 @@ func _physics_process(delta):
 	move_and_collide(Vector2(speed, 0))
 
 func deal_damage(damage):
-	if not isDead:
+	if not isDead && global_position.x < 750:
 		if hurtSoundCooldown.time_left <= 0:
 			hurtSound.pitch_scale = randf_range(0.6, 1.4)
 			hurtSound.play();
