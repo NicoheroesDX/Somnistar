@@ -106,4 +106,4 @@ func _physics_process(delta):
 	move_and_slide()
 
 func die():
-	Global.change_scene_with_translation("res://src/menu/GameOver.tscn")
+	Global.change_scene_with_transition("res://src/menu/GameOver.tscn")

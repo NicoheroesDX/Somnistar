@@ -6,11 +6,12 @@ extends Node2D
 func _ready():
 	finalDistance.text = Global.calculate_distance_str(Global.distance)
 	finalLight.text = str(Global.collectedLight)
+	Global.update_scores();
 
 func _on_button_pressed():
 	Global.reset_game_data();
-	Global.change_scene_with_translation("res://src/world/World.tscn")
+	Global.change_scene_with_transition("res://src/world/World.tscn")
 
 func _on_menu_button_pressed():
 	Global.reset_game_data();
-	Global.change_scene_with_translation("res://src/menu/MainMenu.tscn")
+	Global.change_scene_with_transition("res://src/menu/MainMenu.tscn")

@@ -3,6 +3,14 @@ extends Node2D
 @onready var optionsMenu = get_node("OptionsMenu")
 @onready var creditsMenu = get_node("CreditsMenu")
 
+@onready var highscoreMenu = get_node("HighscoreMenu")
+@onready var highscoreLabel = get_node("HighscoreMenu/Highscore")
+@onready var highscoreDateLabel = get_node("HighscoreMenu/HighscoreDate")
+
+@onready var lastPlayedMenu = get_node("LastPlayedMenu")
+@onready var lastScoreLabel = get_node("LastPlayedMenu/LastScore")
+@onready var lastDateLabel = get_node("LastPlayedMenu/LastDate")
+
 @onready var sfxSlider: HSlider = get_node("OptionsMenu/SFXSlider")
 @onready var musicSlider: HSlider = get_node("OptionsMenu/MusicSlider")
 
@@ -22,6 +30,22 @@ func _ready():
 	
 	var current_music_volume = AudioServer.get_bus_volume_db(music_audio_bus)
 	var current_sfx_volume = AudioServer.get_bus_volume_db(sfx_audio_bus)
+	
+	if Global.highscore != null && Global.highscoreDate != null && Global.lastScore != null && Global.lastScoreDate != null:
+		highscoreLabel.text = Global.calculate_distance_str(Global.highscore);
+		highscoreDateLabel.text = Global.calculate_date_str(Global.highscoreDate)
+		lastScoreLabel.text = Global.calculate_distance_str(Global.lastScore);
+		lastDateLabel.text = Global.calculate_date_str(Global.lastScoreDate)
+	
+	if Global.highscore <= 0:
+		highscoreMenu.visible = false;
+	else:
+		highscoreMenu.visible = true;
+	
+	if Global.lastScore <= 0:
+		lastPlayedMenu.visible = false;
+	else:
+		lastPlayedMenu.visible = true;
 	
 	if not load_options_from_file():
 		print("Unable to load from file!")
@@ -49,7 +73,7 @@ func hide_credits_menu():
 
 func _on_play_button_pressed():
 	Global.reset_game_data();
-	Global.change_scene_with_translation("res://src/world/World.tscn")
+	Global.change_scene_with_transition("res://src/world/World.tscn")
 
 func _on_options_button_pressed():
 	show_options_menu()

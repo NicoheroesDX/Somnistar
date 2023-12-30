@@ -9,13 +9,18 @@ var health = 0
 @onready var chargeTimer = get_node("ChargeTimer")
 @onready var healthBarBorder = get_node("ColorRect")
 @onready var healthBar: ProgressBar = get_node("ColorRect/ProgressBar")
+@onready var sprite = get_node("Sprite2D")
 
-@onready var hurtSoundCooldown = get_node("HurtSoundCooldown")
+@onready var hurtEffectCooldown = get_node("HurtEffectCooldown")
 
 @onready var shootSound = get_node("ShootSound")
 @onready var chargeSound = get_node("ChargeSound")
 @onready var hurtSound = get_node("HurtSound")
 @onready var deathSound = get_node("DeathSound")
+
+@onready var deathParticles = get_node("DeathParticles")
+@onready var hurtParticles = get_node("HurtParticles")
+@onready var chargeParticles = get_node("ChargeParticles")
 
 @onready var timer = get_node("DespawnTimer")
 @onready var animation = get_node("AnimationPlayer")
@@ -63,16 +68,20 @@ func _physics_process(delta):
 
 func deal_damage(damage):
 	if not isDead && global_position.x < 750:
-		if hurtSoundCooldown.time_left <= 0:
+		if hurtEffectCooldown.time_left <= 0:
 			hurtSound.pitch_scale = randf_range(0.6, 1.4)
 			hurtSound.play();
-			hurtSoundCooldown.start();
+			hurtEffectCooldown.start();
+		sprite.modulate = Color(randi_range(50, 150), randi_range(50, 150), randi_range(50, 150))
 		health -= damage;
+		hurtParticles.emitting = true;
 
 func die():
 	if not isDead:
 		isDead = true
 		deathSound.play();
+		deathParticles.emitting = true;
+		chargeParticles.emitting = false;
 		animation.play("death");
 		timer.start();
 
@@ -89,11 +98,13 @@ func _on_shoot_timer_timeout():
 	if not isDead:
 		if (global_position.x < 800):
 			chargeSound.play()
+			chargeParticles.emitting = true;
 			chargeTimer.start()
 
 func _on_charge_timer_timeout():
 	if not isDead:
 		shootSound.play()
+		chargeParticles.emitting = false;
 		var direction = (player.global_position - global_position).normalized()
 		var projectile_instance = shot_scene.instantiate()
 		projectile_instance.global_position = global_position
@@ -102,3 +113,11 @@ func _on_charge_timer_timeout():
 
 func _on_despawn_timer_timeout():
 	queue_free()
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "death":
+		deathParticles.emitting = false;
+
+func _on_hurt_effect_cooldown_timeout():
+	sprite.modulate = Color(1, 1, 1)
+	hurtParticles.emitting = false;

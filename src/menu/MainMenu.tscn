@@ -44,17 +44,109 @@ offset_right = 566.0
 offset_bottom = -96.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = ExtResource("2_bxb67")
 theme_override_font_sizes/font_size = 64
 text = "Somnistar"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="LeftMenu" type="Polygon2D" parent="."]
 position = Vector2(16.8203, -87.6474)
 scale = Vector2(1.44944, 1.96961)
 color = Color(0, 0, 0, 0.784314)
 polygon = PackedVector2Array(-409, -120, -231, 209, -409, 209)
+
+[node name="HighscoreMenu" type="Node2D" parent="."]
+
+[node name="RightMenu" type="Polygon2D" parent="HighscoreMenu"]
+position = Vector2(912, -248)
+scale = Vector2(1.44944, 1.96961)
+color = Color(0, 0, 0, 0.784314)
+polygon = PackedVector2Array(-452.589, 186.839, -386.356, 138.098, -231.814, 138.098, -231.814, 186.839)
+
+[node name="RightMenu2" type="Polygon2D" parent="HighscoreMenu/RightMenu"]
+position = Vector2(0, -48.7406)
+scale = Vector2(1, 1)
+color = Color(0.435294, 0.0313726, 0.188235, 0.784314)
+polygon = PackedVector2Array(-386.356, 186.839, -364.279, 170.592, -231.814, 170.592, -231.814, 186.839)
+
+[node name="HighscoreTitle" type="Label" parent="HighscoreMenu"]
+offset_left = 344.0
+offset_top = -8.0
+offset_right = 568.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Highscore"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Highscore" type="Label" parent="HighscoreMenu"]
+offset_left = 256.0
+offset_top = 32.0
+offset_right = 568.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 40
+text = "XXXX m"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighscoreDate" type="Label" parent="HighscoreMenu"]
+offset_left = 256.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 24
+text = "DD. Month YYYY - HH:MM"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LastPlayedMenu" type="Node2D" parent="."]
+position = Vector2(0, 168)
+
+[node name="RightMenu" type="Polygon2D" parent="LastPlayedMenu"]
+position = Vector2(912, -248)
+scale = Vector2(1.44944, 1.96961)
+color = Color(0, 0, 0, 0.784314)
+polygon = PackedVector2Array(-452.589, 186.839, -386.356, 138.098, -231.814, 138.098, -231.814, 186.839)
+
+[node name="RightMenu2" type="Polygon2D" parent="LastPlayedMenu/RightMenu"]
+position = Vector2(0, -48.7406)
+scale = Vector2(1, 1)
+color = Color(0.0901961, 0.196078, 0.509804, 0.784314)
+polygon = PackedVector2Array(-386.356, 186.839, -364.279, 170.592, -231.814, 170.592, -231.814, 186.839)
+
+[node name="LastplayedTitle" type="Label" parent="LastPlayedMenu"]
+offset_left = 344.0
+offset_top = -8.0
+offset_right = 568.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Last played"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LastScore" type="Label" parent="LastPlayedMenu"]
+offset_left = 256.0
+offset_top = 32.0
+offset_right = 568.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 40
+text = "XXXX m"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LastDate" type="Label" parent="LastPlayedMenu"]
+offset_left = 256.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 24
+text = "DD. Month YYYY - HH:MM"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="PlayRect" type="ColorRect" parent="."]
 offset_left = -520.0
