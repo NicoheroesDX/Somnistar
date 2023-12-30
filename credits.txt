@@ -1,6 +1,7 @@
 Programs:
 > Godot
 > Aseprite
+> jsfxr
 
 Music:
 > Mario Kart Arcade GP 2 - Rainbow Cup
