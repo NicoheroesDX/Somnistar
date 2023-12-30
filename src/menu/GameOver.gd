@@ -1,11 +1,6 @@
 extends Node2D
 
-@onready var finalDistance = get_node("Canvas/FinalDistance")
-@onready var finalLight = get_node("Canvas/FinalLight")
-
 func _ready():
-	finalDistance.text = Global.calculate_distance_str(Global.distance)
-	finalLight.text = str(Global.collectedLight)
 	Global.update_scores();
 
 func _on_button_pressed():

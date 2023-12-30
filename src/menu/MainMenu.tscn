@@ -69,7 +69,6 @@ polygon = PackedVector2Array(-452.589, 186.839, -386.356, 138.098, -231.814, 138
 
 [node name="RightMenu2" type="Polygon2D" parent="HighscoreMenu/RightMenu"]
 position = Vector2(0, -48.7406)
-scale = Vector2(1, 1)
 color = Color(0.435294, 0.0313726, 0.188235, 0.784314)
 polygon = PackedVector2Array(-386.356, 186.839, -364.279, 170.592, -231.814, 170.592, -231.814, 186.839)
 
@@ -114,7 +113,6 @@ polygon = PackedVector2Array(-452.589, 186.839, -386.356, 138.098, -231.814, 138
 
 [node name="RightMenu2" type="Polygon2D" parent="LastPlayedMenu/RightMenu"]
 position = Vector2(0, -48.7406)
-scale = Vector2(1, 1)
 color = Color(0.0901961, 0.196078, 0.509804, 0.784314)
 polygon = PackedVector2Array(-386.356, 186.839, -364.279, 170.592, -231.814, 170.592, -231.814, 186.839)
 

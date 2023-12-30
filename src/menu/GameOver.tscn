@@ -1,68 +1,240 @@
-[gd_scene load_steps=6 format=3 uid="uid://bik15r0rra3xv"]
+[gd_scene load_steps=5 format=3 uid="uid://bik15r0rra3xv"]
 
 [ext_resource type="Script" path="res://src/menu/GameOver.gd" id="1_b5hs8"]
-[ext_resource type="Texture2D" uid="uid://dxulol4drbr3l" path="res://src/menu/assets/graphics/game_over.png" id="1_jhm75"]
+[ext_resource type="Texture2D" uid="uid://elq7qhhwohr1" path="res://src/menu/assets/graphics/gameover_background_large.png" id="2_v0dwr"]
 [ext_resource type="AudioStream" uid="uid://ssqa480etk42" path="res://src/world/assets/sounds/Evil2.wav" id="3_25735"]
-
-[sub_resource type="Gradient" id="Gradient_j5l5r"]
-colors = PackedColorArray(0.275159, 3.23378e-07, 3.60981e-08, 1, 0.622993, 0.0149809, 2.88785e-07, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2sxhp"]
-gradient = SubResource("Gradient_j5l5r")
+[ext_resource type="FontFile" uid="uid://3wwywn3fqhcm" path="res://src/menu/fonts/RubikBubbles-Regular.ttf" id="3_ah4my"]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_b5hs8")
 
 [node name="Canvas" type="CanvasGroup" parent="."]
 
-[node name="Background" type="Sprite2D" parent="Canvas"]
-rotation = 1.5708
-scale = Vector2(3, 1600)
-texture = SubResource("GradientTexture1D_2sxhp")
+[node name="Sprite2D" type="Sprite2D" parent="Canvas"]
+position = Vector2(-85, -20)
+texture = ExtResource("2_v0dwr")
 
-[node name="GameOver" type="Sprite2D" parent="Canvas"]
-position = Vector2(0, -109)
-texture = ExtResource("1_jhm75")
+[node name="ColorRect" type="ColorRect" parent="Canvas"]
+offset_left = -640.0
+offset_top = -192.0
+offset_right = 640.0
+offset_bottom = -40.0
+color = Color(0, 0, 0, 0.784314)
 
-[node name="Button" type="Button" parent="Canvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = 248.0
-offset_right = 48.0
-offset_bottom = 288.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Restart"
+[node name="CurrentTimestamp" type="Label" parent="Canvas/ColorRect"]
+offset_left = 832.0
+offset_top = 24.0
+offset_right = 1216.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_font_sizes/font_size = 16
+text = "- Last Highscore -"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="Canvas"]
+[node name="HighscoreLabel2" type="Label" parent="Canvas/ColorRect"]
+offset_left = 832.0
+offset_top = 56.0
+offset_right = 1216.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "100,32 km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Distance" type="Label" parent="Canvas/ColorRect"]
+offset_left = 512.0
+offset_top = 16.0
+offset_right = 768.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "- Distance -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Canvas/ColorRect"]
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 832.0
+offset_bottom = 120.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 50
+text = "100,34 km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel2" type="Label" parent="Canvas/ColorRect"]
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 832.0
+offset_bottom = 120.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 50
+text = "100,34 km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreIndicator" type="Label" parent="Canvas/ColorRect"]
+offset_left = 512.0
+offset_top = 104.0
+offset_right = 768.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(1, 0.792157, 0.666667, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.666667, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "New Highscore!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highscore" type="Label" parent="Canvas/ColorRect"]
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 448.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_font_sizes/font_size = 16
+text = "- Current Timestamp -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="Canvas/ColorRect"]
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 448.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 25
+text = "DD. Month YYYY - HH:MM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreDate" type="Label" parent="Canvas/ColorRect"]
+offset_left = 832.0
+offset_top = 96.0
+offset_right = 1216.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_font_sizes/font_size = 16
+text = "DD. Month YYYY - HH:MM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Canvas"]
+offset_left = -640.0
+offset_top = -48.0
+offset_right = 640.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="CollectedLumen" type="Label" parent="Canvas/ColorRect2"]
+offset_left = 512.0
+offset_top = 40.0
+offset_right = 768.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 20
+text = "- Collected Lumen -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LumenLabel" type="Label" parent="Canvas/ColorRect2"]
+offset_left = 512.0
+offset_top = 72.0
+offset_right = 768.0
+offset_bottom = 104.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 28
+text = "50000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefeatedEnemies" type="Label" parent="Canvas/ColorRect2"]
+offset_left = 512.0
+offset_top = 136.0
+offset_right = 768.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 20
+text = "- Defeated Enemies -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyLabel" type="Label" parent="Canvas/ColorRect2"]
+offset_left = 512.0
+offset_top = 168.0
+offset_right = 768.0
+offset_bottom = 200.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 28
+text = "64"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="Canvas"]
+offset_left = -640.0
+offset_top = -192.0
+offset_right = 640.0
+offset_bottom = -184.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect4" type="ColorRect" parent="Canvas"]
+offset_left = -640.0
+offset_top = 184.0
+offset_right = 640.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="GameTitle" type="Label" parent="."]
+offset_left = -576.0
+offset_top = -312.0
+offset_right = 576.0
+offset_bottom = -200.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.54902, 0.486275, 1)
+theme_override_colors/font_shadow_color = Color(0.815686, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("3_ah4my")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -512.0
-offset_top = 248.0
+offset_top = 240.0
 offset_right = -416.0
-offset_bottom = 288.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Main Menu"
 
-[node name="FinalDistance" type="Label" parent="Canvas"]
-offset_left = -128.0
-offset_top = 88.0
-offset_right = 128.0
-offset_bottom = 128.0
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 240.0
+offset_right = 48.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
 
-[node name="FinalLight" type="Label" parent="Canvas"]
-offset_left = -128.0
-offset_top = 128.0
-offset_right = 128.0
-offset_bottom = 192.0
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ScreenshotButton" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 240.0
+offset_right = 512.0
+offset_bottom = 272.0
+text = "Screenshot"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -72,5 +244,5 @@ volume_db = -10.0
 autoplay = true
 bus = &"SFXBus"
 
-[connection signal="pressed" from="Canvas/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Canvas/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_button_pressed"]
