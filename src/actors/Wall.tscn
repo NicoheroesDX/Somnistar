@@ -9,6 +9,7 @@ size = Vector2(1256, 656)
 
 [node name="Wall" type="AnimatableBody2D"]
 top_level = true
+sync_to_physics = false
 script = ExtResource("1_djkkj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

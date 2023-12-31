@@ -32,7 +32,7 @@ func _physics_process(delta):
 	else:
 		base_speed = 2.5
 	
-	speed = base_speed + (0.2 * Global.skippedEnemys) + (-0.05 * Global.speed);
+	speed = base_speed + (0.1 * Global.skippedEnemys) + (-0.05 * Global.speed);
 	move_and_collide(Vector2(speed, 0))
 	
 	if global_position.x < -1500:

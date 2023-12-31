@@ -111,8 +111,10 @@ func untoggle_all_buttons_except(exceptButtonIndex: int):
 			screenSizeButtons[i].set_pressed(false);
 
 func change_screen_size(factor: float):
-	get_window().size = (Global.BASE_WINDOW_SIZE) * factor
+	var newWindowSize = (Global.BASE_WINDOW_SIZE) * factor
+	get_window().size = newWindowSize
 	get_tree().root.content_scale_factor = factor
+	get_window().position = Vector2i((DisplayServer.screen_get_size().x - newWindowSize.x) / 2, 30) 
 
 func _on_screen_1_button_toggled(toggled_on):
 	if toggled_on:

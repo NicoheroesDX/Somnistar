@@ -12,8 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://be2snlci3wc2e" path="res://src/actors/assets/sounds/glide.ogg" id="10_a1ade"]
 [ext_resource type="AudioStream" uid="uid://dquxdqiuquv4k" path="res://src/actors/assets/sounds/glide_stop.ogg" id="11_dmyvk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o4bc4"]
-radius = 17.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpjl3"]
+radius = 14.0
+height = 36.0
 
 [sub_resource type="Gradient" id="Gradient_nq77l"]
 colors = PackedColorArray(1, 1, 1, 0.588235, 1, 1, 1, 0)
@@ -153,8 +154,9 @@ script = ExtResource("1_vbwar")
 texture = ExtResource("1_qfgtj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_o4bc4")
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hpjl3")
 
 [node name="PassiveParticles" type="GPUParticles2D" parent="."]
 amount = 16

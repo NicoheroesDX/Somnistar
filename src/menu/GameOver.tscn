@@ -14,83 +14,15 @@ script = ExtResource("1_b5hs8")
 position = Vector2(-85, -20)
 texture = ExtResource("2_v0dwr")
 
-[node name="ColorRect" type="ColorRect" parent="Canvas"]
+[node name="UpperRect" type="ColorRect" parent="Canvas"]
 offset_left = -640.0
 offset_top = -192.0
 offset_right = 640.0
 offset_bottom = -40.0
 color = Color(0, 0, 0, 0.784314)
 
-[node name="CurrentTimestamp" type="Label" parent="Canvas/ColorRect"]
-offset_left = 832.0
-offset_top = 24.0
-offset_right = 1216.0
-offset_bottom = 56.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
-theme_override_font_sizes/font_size = 16
-text = "- Last Highscore -"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighscoreLabel2" type="Label" parent="Canvas/ColorRect"]
-offset_left = 832.0
-offset_top = 56.0
-offset_right = 1216.0
-offset_bottom = 96.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 32
-text = "100,32 km"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Distance" type="Label" parent="Canvas/ColorRect"]
-offset_left = 512.0
-offset_top = 16.0
-offset_right = 768.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 24
-text = "- Distance -"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="Canvas/ColorRect"]
-offset_left = 448.0
-offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 120.0
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 50
-text = "100,34 km"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScoreLabel2" type="Label" parent="Canvas/ColorRect"]
-offset_left = 448.0
-offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 120.0
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 50
-text = "100,34 km"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighscoreIndicator" type="Label" parent="Canvas/ColorRect"]
-offset_left = 512.0
-offset_top = 104.0
-offset_right = 768.0
-offset_bottom = 136.0
-theme_override_colors/font_color = Color(1, 0.792157, 0.666667, 1)
-theme_override_colors/font_outline_color = Color(1, 0.792157, 0.666667, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "New Highscore!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Highscore" type="Label" parent="Canvas/ColorRect"]
+[node name="CurrentTimestamp" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 24.0
 offset_right = 448.0
@@ -101,7 +33,8 @@ text = "- Current Timestamp -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighscoreLabel" type="Label" parent="Canvas/ColorRect"]
+[node name="TimeLabel" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 56.0
 offset_right = 448.0
@@ -114,7 +47,71 @@ text = "DD. Month YYYY - HH:MM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighscoreDate" type="Label" parent="Canvas/ColorRect"]
+[node name="Distance" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 16.0
+offset_right = 768.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "- Distance -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 832.0
+offset_bottom = 120.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 50
+text = "XXX,XX km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreIndicator" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 104.0
+offset_right = 768.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(1, 0.792157, 0.666667, 1)
+theme_override_colors/font_outline_color = Color(1, 0.792157, 0.666667, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "New Highscore!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LastHighscore" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 24.0
+offset_right = 1216.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_font_sizes/font_size = 16
+text = "- Last Highscore -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 56.0
+offset_right = 1216.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "XXX,XX km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighscoreDate" type="Label" parent="Canvas/UpperRect"]
+layout_mode = 0
 offset_left = 832.0
 offset_top = 96.0
 offset_right = 1216.0
@@ -125,14 +122,15 @@ text = "DD. Month YYYY - HH:MM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect2" type="ColorRect" parent="Canvas"]
+[node name="LowerRect" type="ColorRect" parent="Canvas"]
 offset_left = -640.0
 offset_top = -48.0
 offset_right = 640.0
 offset_bottom = 192.0
 color = Color(0, 0, 0, 0.588235)
 
-[node name="CollectedLumen" type="Label" parent="Canvas/ColorRect2"]
+[node name="CollectedLumen" type="Label" parent="Canvas/LowerRect"]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 40.0
 offset_right = 768.0
@@ -142,18 +140,20 @@ text = "- Collected Lumen -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LumenLabel" type="Label" parent="Canvas/ColorRect2"]
+[node name="LumenLabel" type="Label" parent="Canvas/LowerRect"]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 72.0
 offset_right = 768.0
 offset_bottom = 104.0
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 28
-text = "50000"
+text = "XXXXX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefeatedEnemies" type="Label" parent="Canvas/ColorRect2"]
+[node name="DefeatedEnemies" type="Label" parent="Canvas/LowerRect"]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 136.0
 offset_right = 768.0
@@ -163,14 +163,15 @@ text = "- Defeated Enemies -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyLabel" type="Label" parent="Canvas/ColorRect2"]
+[node name="EnemyLabel" type="Label" parent="Canvas/LowerRect"]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 168.0
 offset_right = 768.0
 offset_bottom = 200.0
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 28
-text = "64"
+text = "XXX"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -95,6 +95,7 @@ radius = 26.0
 height = 76.0
 
 [node name="MediumLight" type="AnimatableBody2D"]
+sync_to_physics = false
 script = ExtResource("1_44jsl")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

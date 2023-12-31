@@ -93,6 +93,7 @@ hue_variation_max = -0.8
 radius = 43.0116
 
 [node name="LargeLight" type="AnimatableBody2D"]
+sync_to_physics = false
 script = ExtResource("1_n8s5u")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

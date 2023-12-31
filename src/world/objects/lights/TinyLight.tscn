@@ -94,6 +94,7 @@ radius = 11.0
 height = 66.0
 
 [node name="TinyLight" type="AnimatableBody2D"]
+sync_to_physics = false
 script = ExtResource("1_olwxx")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

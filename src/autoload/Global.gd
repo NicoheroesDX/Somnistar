@@ -7,8 +7,10 @@ const HIGHSCORE_FILE_LOCATION = "user://somnistar.hisc"
 var speed = 0
 var distance = 0
 var collectedLight = 0
+var totalCollectedLight = 0
 
 var skippedEnemys = 0
+var killedEnemys = 0
 
 var highscore;
 var highscoreDate;
@@ -41,6 +43,10 @@ func update_speed(newGlobalSpeed):
 func change_collected_light(lightAmountOperation):
 	var oldLightAmount = collectedLight
 	var newLightAmount = collectedLight + lightAmountOperation
+	
+	if lightAmountOperation > 0:
+		Global.totalCollectedLight += lightAmountOperation
+	
 	if newLightAmount < 0:
 		newLightAmount = 0;
 	elif newLightAmount > 20000:
@@ -62,6 +68,8 @@ func reset_game_data():
 	speed = 0
 	distance = 0
 	collectedLight = 0
+	killedEnemys = 0
+	totalCollectedLight = 0
 
 func update_scores():
 	if distance > highscore:

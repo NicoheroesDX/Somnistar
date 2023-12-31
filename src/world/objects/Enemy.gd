@@ -83,6 +83,7 @@ func die():
 		deathParticles.emitting = true;
 		chargeParticles.emitting = false;
 		animation.play("death");
+		Global.killedEnemys += 1;
 		timer.start();
 
 func kill_player():
