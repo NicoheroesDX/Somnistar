@@ -9,6 +9,12 @@ extends Node2D
 @onready var collectedLumenLabel = get_node("Canvas/LowerRect/LumenLabel")
 @onready var defeatedEnemiesLabel = get_node("Canvas/LowerRect/EnemyLabel")
 
+@onready var mainMenuButton = get_node("MainMenuRect")
+@onready var restartButton = get_node("RestartRect")
+@onready var screenshotButton = get_node("ScreenshotRect")
+
+@onready var screenshotSuccessful = get_node("ScreenshotSuccessful")
+
 func _ready():
 	timeLabel.text = Global.calculate_date_str(Time.get_datetime_string_from_system());
 	scoreLabel.text = Global.calculate_distance_str(Global.distance);
@@ -35,10 +41,25 @@ func _ready():
 	
 	Global.update_scores();
 
-func _on_button_pressed():
-	Global.reset_game_data();
-	Global.change_scene_with_transition("res://src/world/World.tscn")
-
 func _on_menu_button_pressed():
 	Global.reset_game_data();
 	Global.change_scene_with_transition("res://src/menu/MainMenu.tscn")
+	
+func _on_restart_button_pressed():
+	Global.reset_game_data();
+	Global.change_scene_with_transition("res://src/world/World.tscn")
+
+func _on_screenshot_button_pressed():
+	mainMenuButton.visible = false
+	restartButton.visible = false
+	screenshotButton.visible = false
+	
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png("user://screenshot.png")
+	
+	mainMenuButton.visible = true
+	restartButton.visible = true
+	
+	screenshotSuccessful.visible = true
+	
+	print("Saved")

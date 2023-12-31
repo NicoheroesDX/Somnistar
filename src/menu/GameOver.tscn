@@ -1,9 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://bik15r0rra3xv"]
+[gd_scene load_steps=17 format=3 uid="uid://bik15r0rra3xv"]
 
 [ext_resource type="Script" path="res://src/menu/GameOver.gd" id="1_b5hs8"]
 [ext_resource type="Texture2D" uid="uid://elq7qhhwohr1" path="res://src/menu/assets/graphics/gameover_background_large.png" id="2_v0dwr"]
 [ext_resource type="AudioStream" uid="uid://ssqa480etk42" path="res://src/world/assets/sounds/Evil2.wav" id="3_25735"]
 [ext_resource type="FontFile" uid="uid://3wwywn3fqhcm" path="res://src/menu/fonts/RubikBubbles-Regular.ttf" id="3_ah4my"]
+
+[sub_resource type="Gradient" id="Gradient_4kc2i"]
+colors = PackedColorArray(0.512948, 0.106093, 0.175779, 1, 0.929482, 0.29008, 0.427621, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pbnv0"]
+gradient = SubResource("Gradient_4kc2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y4td0"]
+texture = SubResource("GradientTexture1D_pbnv0")
+
+[sub_resource type="Gradient" id="Gradient_scriu"]
+colors = PackedColorArray(0.170262, 0.0168494, 0.0435945, 1, 0.467259, 0.0950814, 0.179076, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1o8i5"]
+gradient = SubResource("Gradient_scriu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_klqm0"]
+texture = SubResource("GradientTexture1D_1o8i5")
+
+[sub_resource type="Gradient" id="Gradient_46imh"]
+colors = PackedColorArray(0.795082, 0.1352, 0.284963, 1, 0.980395, 0.705606, 0.712115, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mehit"]
+gradient = SubResource("Gradient_46imh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkrqe"]
+texture = SubResource("GradientTexture1D_mehit")
+
+[sub_resource type="Theme" id="Theme_ef37j"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = SubResource("StyleBoxTexture_y4td0")
+Button/styles/normal = SubResource("StyleBoxTexture_klqm0")
+Button/styles/pressed = SubResource("StyleBoxTexture_kkrqe")
+
+[sub_resource type="Theme" id="Theme_24dgf"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = SubResource("StyleBoxTexture_y4td0")
+Button/styles/normal = SubResource("StyleBoxTexture_klqm0")
+Button/styles/pressed = SubResource("StyleBoxTexture_kkrqe")
+
+[sub_resource type="Theme" id="Theme_0nqhf"]
+Button/colors/font_outline_color = Color(0, 0, 0, 0.784314)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/hover = SubResource("StyleBoxTexture_y4td0")
+Button/styles/normal = SubResource("StyleBoxTexture_klqm0")
+Button/styles/pressed = SubResource("StyleBoxTexture_kkrqe")
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_b5hs8")
@@ -159,7 +210,7 @@ offset_top = 136.0
 offset_right = 768.0
 offset_bottom = 168.0
 theme_override_font_sizes/font_size = 20
-text = "- Defeated Enemies -"
+text = "- Defeated Invebula -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -206,36 +257,67 @@ text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MainMenuRect" type="ColorRect" parent="."]
 offset_left = -512.0
-offset_top = 240.0
-offset_right = -416.0
-offset_bottom = 272.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 232.0
+offset_right = -304.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="MenuButton" type="Button" parent="MainMenuRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_ef37j")
 text = "Main Menu"
 
-[node name="RestartButton" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = 240.0
-offset_right = 48.0
-offset_bottom = 272.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="RestartRect" type="ColorRect" parent="."]
+offset_left = -104.0
+offset_top = 232.0
+offset_right = 104.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="RestartButton" type="Button" parent="RestartRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_24dgf")
 text = "Restart"
 
-[node name="ScreenshotButton" type="Button" parent="."]
-offset_left = 416.0
-offset_top = 240.0
+[node name="ScreenshotRect" type="ColorRect" parent="."]
+offset_left = 304.0
+offset_top = 232.0
 offset_right = 512.0
-offset_bottom = 272.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="ScreenshotButton" type="Button" parent="ScreenshotRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_0nqhf")
 text = "Screenshot"
+
+[node name="ScreenshotSuccessful" type="Label" parent="."]
+visible = false
+offset_left = 256.0
+offset_top = 243.0
+offset_right = 560.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 24
+text = "Succesfully saved screenshot!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -245,5 +327,6 @@ volume_db = -10.0
 autoplay = true
 bus = &"SFXBus"
 
-[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="RestartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenuRect/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="RestartRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ScreenshotRect/ScreenshotButton" to="." method="_on_screenshot_button_pressed"]

@@ -1,0 +1,42 @@
+Background Story:
+
+The name is Somnistar - She is the 5th Star-guardian and protector of dreams.
+Her sole purpose is to keep nightmares away and help all living beings in the universe to sleep peacefully.
+
+How to achieve that?
+You have to stop "The Wall" from becoming bigger.
+Nobody knows what "The Wall" really is or where it comes from, all thats known is that it caused nightmares all over the universe and is powered by the so-called species of "Invebula".
+The Invebula can be recognized by their red-colored aura and the form that may look like inverse clouds.
+
+Every time "The Wall" absorbs an Invebula it gets bigger and faster so make sure that the world is being freed from thier existance.
+
+Somnistar's power is channeled through the use of lumen-based magic. A form of magic that can only be used by those who have a pure heart.
+Collecting Lumen along the way will help Somnistar become stronger and grant new Abilites such as stomping, gliding and beaming.
+
+
+
+Controls:
+
+A / D / < / >
+Move Somnistar left or right.
+
+S / v (Press)
+Use the stomp ability to go down fast to avoid enemy projectiles or reach clouds on the bottom of the screen easier. (Each stomp will drain a bit of your Lumen)
+
+W / ^ (Press / Hold)
+Use the glide ability to reduce your fall speed and increase momentum in the air. This can also be used to negate a cloud's bouncy effect or stop your stomp immediately.
+Be careful because this ability will completely destory a cloud without making you bounce upwards when you touch one while this power is active. (Using it will drain quite a bit of your Lumen)
+
+Space / Enter (Hold)
+Use the beam ability to eliminate the Invebula. The power of the beam will also push you back slightly. (Using it will drain quite a bit of your Lumen)
+
+
+
+Information:
+
+- Somnistar can die through falling to the abyss, touching an enemy or it's projectile or getting soaked into "The Wall" without having Lumen.
+- Clouds will make you bounce upwards
+- There are four different sizes of Lumen which will fill your Lumen-Meter upon collecting - granting Somnistar new abilities and protecting her from "The Wall"
+- If an Invebula gets absorbed by "The Wall" it will make it faster. Therefore all of them should be eliminated immediately. If "The Wall" absorbs too many enemies, it could get impossible to outrun it.
+- The movement speed of Somnistar and "The Wall" as well as the health of the Invebula will gradiutaly increase the further your distance is. After 30 km the maximum difficulty of the game is reached.
+

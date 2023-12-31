@@ -120,21 +120,29 @@ func _on_screen_1_button_toggled(toggled_on):
 	if toggled_on:
 		untoggle_all_buttons_except(0);
 		change_screen_size(1);
+	elif get_toggeled_button() == -1:
+		screenSizeButtons[0].set_pressed(true);
 
 func _on_screen_2_button_toggled(toggled_on):
 	if toggled_on:
 		untoggle_all_buttons_except(1);
 		change_screen_size(1.5);
+	elif get_toggeled_button() == -1:
+		screenSizeButtons[1].set_pressed(true);
 
 func _on_screen_3_button_toggled(toggled_on):
 	if toggled_on:
 		untoggle_all_buttons_except(2);
 		change_screen_size(2);
+	elif get_toggeled_button() == -1:
+		screenSizeButtons[2].set_pressed(true);
 
 func _on_screen_4_button_toggled(toggled_on):
 	if toggled_on:
 		untoggle_all_buttons_except(3);
 		change_screen_size(2.5);
+	elif get_toggeled_button() == -1:
+		screenSizeButtons[3].set_pressed(true);
 
 func get_toggeled_button():
 	for i in screenSizeButtons.size():
