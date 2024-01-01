@@ -26,7 +26,7 @@ func _physics_process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rff6b"]
-size = Vector2(74, 1080)
+size = Vector2(74, 1617.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci5mf"]
 size = Vector2(1300, 188)
@@ -85,11 +85,11 @@ bus = &"MusicBus"
 collision_layer = 16
 
 [node name="LeftCollider" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(-613, 0)
+position = Vector2(-613, -133.5)
 shape = SubResource("RectangleShape2D_rff6b")
 
 [node name="RightCollider" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(613, 0)
+position = Vector2(613, -135.25)
 shape = SubResource("RectangleShape2D_rff6b")
 
 [node name="DeathZone" type="Area2D" parent="WorldBorder"]
@@ -157,6 +157,12 @@ position = Vector2(-1000, 0)
 top_level = true
 visibility_layer = 3
 
+[node name="LumenBackground" type="Polygon2D" parent="CanvasGroup"]
+position = Vector2(-96, -248)
+scale = Vector2(1.21053, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(24, -32, 0, 0, 128, 0, 152, -32)
+
 [node name="TopContainer" type="VBoxContainer" parent="CanvasGroup"]
 offset_left = -320.0
 offset_top = -304.0
@@ -189,8 +195,15 @@ vertical_alignment = 1
 [node name="LumenNumber" type="Label" parent="CanvasGroup/TopContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DistanceBackground" type="Polygon2D" parent="CanvasGroup"]
+position = Vector2(-117.333, 296)
+scale = Vector2(1.61404, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(19.8261, -32, -6.6087, 8, 125.565, 8, 152, -32)
 
 [node name="BottomContainer" type="VBoxContainer" parent="CanvasGroup"]
 offset_left = -320.0
@@ -201,7 +214,7 @@ offset_bottom = 304.0
 [node name="DistanceNumber" type="Label" parent="CanvasGroup/BottomContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Test"
+text = "0 m"
 horizontal_alignment = 1
 vertical_alignment = 1
 
