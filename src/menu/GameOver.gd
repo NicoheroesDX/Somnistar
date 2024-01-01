@@ -9,13 +9,19 @@ extends Node2D
 @onready var collectedLumenLabel = get_node("Canvas/LowerRect/LumenLabel")
 @onready var defeatedEnemiesLabel = get_node("Canvas/LowerRect/EnemyLabel")
 
-@onready var mainMenuButton = get_node("MainMenuRect")
-@onready var restartButton = get_node("RestartRect")
-@onready var screenshotButton = get_node("ScreenshotRect")
+@onready var mainMenuRect = get_node("MainMenuRect")
+@onready var restartRect = get_node("RestartRect")
+@onready var screenshotRect = get_node("ScreenshotRect")
+
+@onready var mainMenuButton = get_node("MainMenuRect/MenuButton")
+@onready var restartButton = get_node("RestartRect/RestartButton")
+@onready var screenshotButton = get_node("ScreenshotRect/ScreenshotButton")
 
 @onready var screenshotSuccessful = get_node("ScreenshotSuccessful")
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Global.transition_complete.connect(focus_restart_button)
 	timeLabel.text = Global.calculate_date_str(Time.get_datetime_string_from_system());
 	scoreLabel.text = Global.calculate_distance_str(Global.distance);
 	
@@ -49,17 +55,22 @@ func _on_restart_button_pressed():
 	Global.reset_game_data();
 	Global.change_scene_with_transition("res://src/world/World.tscn")
 
+func focus_restart_button():
+	restartButton.grab_focus()
+
 func _on_screenshot_button_pressed():
-	mainMenuButton.visible = false
-	restartButton.visible = false
-	screenshotButton.visible = false
+	mainMenuRect.visible = false
+	restartRect.visible = false
+	screenshotRect.visible = false
+	
+	var screenshotName = "/screenshot" + Global.lastScoreDate.replace("-", "").replace("T", "").replace(":", "") + ".png";
 	
 	await RenderingServer.frame_post_draw
-	get_viewport().get_texture().get_image().save_png("user://screenshot.png")
+	get_viewport().get_texture().get_image().save_png(Global.SCREENSHOT_FOLDER_LOCATION + screenshotName)
 	
-	mainMenuButton.visible = true
-	restartButton.visible = true
+	mainMenuRect.visible = true
+	restartRect.visible = true
 	
 	screenshotSuccessful.visible = true
 	
-	print("Saved")
+	mainMenuButton.grab_focus()

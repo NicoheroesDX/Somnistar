@@ -14,6 +14,7 @@ extends Node2D
 @onready var distanceLabel = get_node("CanvasGroup/BottomContainer/DistanceNumber");
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if (randi_range(1, 10) == 7):
 		rareMusic.play()
 	else:

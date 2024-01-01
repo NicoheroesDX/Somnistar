@@ -1,8 +1,16 @@
 extends Node
 
 const BASE_WINDOW_SIZE = Vector2i(1152, 648)
-const CONFIG_FILE_LOCATION = "user://somnistar_options.cfg"
-const HIGHSCORE_FILE_LOCATION = "user://somnistar.hisc"
+
+const USER_FOLDER = "user://"
+
+const GAME_FOLDER = USER_FOLDER + "Somnistar"
+
+const SAVES_FOLDER_LOCATION = GAME_FOLDER + "/data"
+const SCREENSHOT_FOLDER_LOCATION = GAME_FOLDER + "/screenshots"
+
+const CONFIG_FILE_LOCATION = SAVES_FOLDER_LOCATION + "/somnistar_options.cfg"
+const HIGHSCORE_FILE_LOCATION = SAVES_FOLDER_LOCATION + "/somnistar.hisc"
 
 var speed = 0
 var distance = 0
@@ -21,9 +29,12 @@ var lastScoreDate;
 signal update_collected_light_signal(new_light_amount, old_light_amount)
 signal update_distance(new_distance)
 
+signal transition_complete
+
 const MONTHS: Array[String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 func _ready():
+	create_game_folder();
 	get_highscore_from_file();
 		
 	if highscore == null:
@@ -34,6 +45,10 @@ func _ready():
 		lastScore = 0;
 	if lastScoreDate == null:
 		lastScoreDate = Time.get_datetime_string_from_system();
+
+func create_game_folder():
+	DirAccess.open(USER_FOLDER).make_dir_recursive(SAVES_FOLDER_LOCATION);
+	DirAccess.open(USER_FOLDER).make_dir_recursive(SCREENSHOT_FOLDER_LOCATION);
 
 func update_speed(newGlobalSpeed):
 	speed = newGlobalSpeed;
@@ -88,7 +103,6 @@ func save_highscore_to_file():
 	highscoreFile.set_value("LastScore", "date", lastScoreDate)
 	
 	highscoreFile.save(Global.HIGHSCORE_FILE_LOCATION)
-	print("Successfully saved highscore to file!")
 
 func get_highscore_from_file():
 	var highscoreFile = ConfigFile.new()
@@ -104,8 +118,6 @@ func get_highscore_from_file():
 		
 		lastScore = lscore
 		lastScoreDate = ldate
-		
-		print("Successfully loaded highscore from file!")
 		
 		return true;
 	else:

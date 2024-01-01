@@ -159,26 +159,32 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
+focus_neighbor_right = NodePath("../../ExtrasRect/ExtrasButton")
+focus_neighbor_bottom = NodePath("../../ExtrasRect/ExtrasButton")
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_1qyos")
 text = "Play"
 
-[node name="TutorialRect" type="ColorRect" parent="."]
+[node name="ExtrasRect" type="ColorRect" parent="."]
 offset_left = -496.0
 offset_top = 56.0
 offset_right = -288.0
 offset_bottom = 112.0
 color = Color(0, 0, 0, 0.901961)
 
-[node name="TutorialButton" type="Button" parent="TutorialRect"]
+[node name="ExtrasButton" type="Button" parent="ExtrasRect"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
+focus_neighbor_left = NodePath("../../PlayRect/PlayButton")
+focus_neighbor_top = NodePath("../../PlayRect/PlayButton")
+focus_neighbor_right = NodePath("../../OptionsRect/OptionsButton")
+focus_neighbor_bottom = NodePath("../../OptionsRect/OptionsButton")
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_1qyos")
-text = "Tutorial"
+text = "Extras"
 
 [node name="OptionsRect" type="ColorRect" parent="."]
 offset_left = -472.0
@@ -193,6 +199,10 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
+focus_neighbor_left = NodePath("../../ExtrasRect/ExtrasButton")
+focus_neighbor_top = NodePath("../../ExtrasRect/ExtrasButton")
+focus_neighbor_right = NodePath("../../CreditsRect/CreditsButton")
+focus_neighbor_bottom = NodePath("../../CreditsRect/CreditsButton")
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_1qyos")
 text = "Options"
@@ -210,6 +220,10 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
+focus_neighbor_left = NodePath("../../OptionsRect/OptionsButton")
+focus_neighbor_top = NodePath("../../OptionsRect/OptionsButton")
+focus_neighbor_right = NodePath("../../ExitRect/ExitButton")
+focus_neighbor_bottom = NodePath("../../ExitRect/ExitButton")
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_1qyos")
 text = "Credits"
@@ -227,9 +241,135 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 200.0
 offset_bottom = 48.0
+focus_neighbor_left = NodePath("../../CreditsRect/CreditsButton")
+focus_neighbor_top = NodePath("../../CreditsRect/CreditsButton")
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_1qyos")
 text = "Exit"
+
+[node name="ExtrasMenu" type="ColorRect" parent="."]
+visible = false
+offset_left = -640.0
+offset_top = -384.0
+offset_right = 640.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="ExtrasBackground" type="Sprite2D" parent="ExtrasMenu"]
+position = Vector2(640, 384)
+scale = Vector2(3, 608)
+texture = SubResource("GradientTexture1D_q4k2x")
+
+[node name="ColorRect" type="ColorRect" parent="ExtrasMenu"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 80.0
+offset_right = 1024.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="ExtrasTitle" type="Label" parent="ExtrasMenu"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 1280.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 32
+text = "Extras
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseRect" type="ColorRect" parent="ExtrasMenu"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 608.0
+offset_right = 744.0
+offset_bottom = 664.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="CloseExtrasButton" type="Button" parent="ExtrasMenu/CloseRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 200.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_1qyos")
+text = "Close"
+
+[node name="ContentRect" type="ColorRect" parent="ExtrasMenu"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 248.0
+offset_right = 1000.0
+offset_bottom = 584.0
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.588235)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ExtrasMenu/ContentRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 720.0
+offset_bottom = 336.0
+
+[node name="PageContent" type="Label" parent="ExtrasMenu/ContentRect/ScrollContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Content"
+
+[node name="LeftRect" type="ColorRect" parent="ExtrasMenu"]
+offset_left = 728.0
+offset_top = 168.0
+offset_right = 784.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="LeftButton" type="Button" parent="ExtrasMenu/LeftRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_1qyos")
+text = "<"
+
+[node name="PageLabel" type="Label" parent="ExtrasMenu"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 176.0
+offset_right = 944.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 36
+text = "Page X/Y"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightRect" type="ColorRect" parent="ExtrasMenu"]
+offset_left = 944.0
+offset_top = 168.0
+offset_right = 1000.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 0.901961)
+
+[node name="RightButton" type="Button" parent="ExtrasMenu/RightRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_1qyos")
+text = ">"
+
+[node name="PageName" type="Label" parent="ExtrasMenu"]
+offset_left = 280.0
+offset_top = 176.0
+offset_right = 576.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 36
+text = "Title"
+vertical_alignment = 1
 
 [node name="OptionsMenu" type="ColorRect" parent="."]
 visible = false
@@ -595,9 +735,13 @@ theme = SubResource("Theme_1qyos")
 text = "Close"
 
 [connection signal="pressed" from="PlayRect/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExtrasRect/ExtrasButton" to="." method="_on_extras_button_pressed"]
 [connection signal="pressed" from="OptionsRect/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CreditsRect/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="ExitRect/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExtrasMenu/CloseRect/CloseExtrasButton" to="." method="_on_close_extras_button_pressed"]
+[connection signal="pressed" from="ExtrasMenu/LeftRect/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="ExtrasMenu/RightRect/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="value_changed" from="OptionsMenu/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="OptionsMenu/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="toggled" from="OptionsMenu/Screen1Rect/Screen1Button" to="." method="_on_screen_1_button_toggled"]
