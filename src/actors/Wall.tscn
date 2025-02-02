@@ -26,5 +26,6 @@ shape = SubResource("RectangleShape2D_w0dyi")
 stream = ExtResource("3_yu41j")
 max_distance = 4000.0
 max_polyphony = 4
+bus = &"SFXBus"
 
 [connection signal="body_entered" from="PlayerKiller" to="." method="_on_player_killer_body_entered"]

@@ -109,6 +109,7 @@ local_coords = true
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_wxst8")
 max_polyphony = 4
+bus = &"SFXBus"
 
 [connection signal="body_entered" from="PlayerBouncer" to="." method="_on_player_bouncer_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
