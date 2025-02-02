@@ -16,7 +16,7 @@ extends Node2D
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if (randi_range(1, 10) == 7):
-		rareMusic.play()
+		normalMusic.play()
 	else:
 		normalMusic.play()
 	Global.update_collected_light_signal.connect(refresh_light_amount)
